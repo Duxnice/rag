@@ -1,0 +1,65 @@
+{
+  "profile_version": "5.0-pilot",
+  "status": "Starting budgets, not measured capacity or universal legal limits.",
+  "ingestion": {
+    "max_expression_depth": 8,
+    "max_expression_nodes": 64,
+    "max_edges_per_batch": 100000,
+    "max_nodes_per_batch": 50000,
+    "rule_count_per_provision_review_threshold": 64,
+    "asserted_fanout_review_threshold": 64,
+    "overflow_policy": "quarantine_and_report; no truncation, no invented aggregate rules",
+    "require_human_review_for_automatic_legal_answers": true
+  },
+  "retrieval": {
+    "vector_candidates": 80, "lexical_candidates": 80, "rerank_candidates": 40,
+    "max_seed_rules": 12, "max_taxonomy_hops": 3, "max_reference_hops": 1,
+    "max_graph_nodes": 250, "max_graph_edges": 600, "max_dependency_rules": 64,
+    "max_context_tokens": 12000, "query_timeout_ms": 3000,
+    "dependency_types": ["EXCEPTION_TO", "SANCTION_FOR"],
+    "dependency_overflow_policy": "return_incomplete_and_abstain_from_definitive_applicability; fetch cited text or request narrower scope",
+    "order": ["resolve_time_jurisdiction_and_coverage", "hybrid_candidates", "filter_rule_valid_and_recorded_intervals", "bounded_expansion", "complete_exception_dependencies_or_abstain", "evaluate_three_valued_conditions", "rerank_and_cite"],
+    "request_required": ["legal_as_of", "known_at", "jurisdiction", "interpretation_scope", "case_bindings"],
+    "response_required": ["answer", "citations", "legal_as_of", "known_at", "corpus_coverage", "dependency_complete", "retrieval_truncated", "missing_facts", "applicability_status"],
+    "case_binding_policy": "Bind each variable to one person/vehicle/event in the query case, not just a category node. Evaluate multiple children separately; never combine age from one child with height from another. Quantified/relational facts beyond this model remain unknown until a tested evaluator is added.",
+    "note": "Post-filtering ANN top-k can lose eligible results. Use supported pre-filtering or bounded iterative overfetch; measure eligible recall. LIMIT alone does not bound traversal work."
+  },
+  "neo4j": {
+    "minimum_design_target": "Neo4j 5.26 LTS; test the actual deployed version/edition before import",
+    "id_constraint": "CREATE CONSTRAINT record_id IF NOT EXISTS FOR (n:Record) REQUIRE n.id IS UNIQUE",
+    "labels": "Record plus exactly one concrete type; entity kinds are properties, not extra category nodes",
+    "json_properties": ["bindings", "condition", "action", "penalties", "evidence"],
+    "json_storage": "Canonical UTF-8 JSON string with _json suffix. Never write a map/list-of-maps directly as a property.",
+    "promoted_cache_properties": {"Rule.action_predicate": "action.predicate", "Rule.document_id": "owning Provision.document_id", "Chunk.document_id": "owning Provision.document_id"},
+    "cache_policy": "Generated from canonical fields only; rebuilt transactionally and not accepted as independent extraction output.",
+    "dates": "Convert ISO dates to date and timestamps to datetime through the driver. Omit null properties; keep null in exchange JSON.",
+    "embedding_storage": "Float list on Chunk; model_id, model_revision, dimension and text_sha256 in embedding cache manifest",
+    "embedding_dimension": null,
+    "embedding_policy": "Choose and pin an actual model before creating a vector index. Do not assume dimension=1024.",
+    "edge_identity": "Derived: digest of type/endpoints/role/var. Asserted snapshot: digest of immutable assertion payload including recorded_from, excluding id and recorded_to. Closing recorded_to never changes identity. Merge evidence for one logical assertion through audited snapshots; import idempotently by id and exact endpoints.",
+    "transaction_policy": "Validate against existing graph plus incoming batch, then atomically write nodes, relationships and scheduled validity changes. Single-writer per logical rule_key or equivalent locking required.",
+    "index_templates": [
+      "CREATE INDEX rule_key IF NOT EXISTS FOR (n:Rule) ON (n.rule_key)",
+      "CREATE INDEX rule_valid_from IF NOT EXISTS FOR (n:Rule) ON (n.valid_from)",
+      "CREATE INDEX rule_recorded_from IF NOT EXISTS FOR (n:Rule) ON (n.recorded_from)",
+      "CREATE INDEX provision_document IF NOT EXISTS FOR (n:Provision) ON (n.document_id)",
+      "CREATE FULLTEXT INDEX chunk_text IF NOT EXISTS FOR (n:Chunk) ON EACH [n.text, n.context_text]"
+    ],
+    "note": "Uniqueness does not enforce existence, endpoint types, cardinality, cycles or interval overlap. EXPLAIN/PROFILE and database integration testing are still required."
+  },
+  "fact_catalog": {
+    "age_years": {"type": "number", "unit": "year", "kinds": ["person_category"]},
+    "height_m": {"type": "number", "unit": "m", "kinds": ["person_category"]},
+    "seat_rows": {"type": "integer", "unit": "count", "kinds": ["vehicle_category"]},
+    "carrying_child": {"type": "boolean", "unit": "boolean", "kinds": ["vehicle_category"]},
+    "issued_on": {"type": "date", "unit": "date", "kinds": ["legal_document_category"]}
+  },
+  "action_catalog": {
+    "seat_child_in_driver_row": {"slots": {"actor": "actor", "child": "beneficiary", "vehicle": "vehicle"}},
+    "use_child_restraint": {"slots": {"actor": "actor", "child": "beneficiary", "device": "instrument", "vehicle": "vehicle"}},
+    "instruct_child_restraint_use": {"slots": {"actor": "actor", "child": "beneficiary", "device": "instrument", "vehicle": "vehicle"}},
+    "issue_detail_regulations": {"slots": {"actor": "authority", "object": "object"}},
+    "continue_using_issued_license": {"slots": {"actor": "actor", "document": "object"}}
+  },
+  "catalog_extension_policy": "These are starter predicates for examples, not exhaustive traffic law. Add reviewed facts/actions with type, unit, role and tests before accepting new predicates. Unknown expressions stay text/pending_review, never silently true."
+}

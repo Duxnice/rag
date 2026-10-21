@@ -1,0 +1,119 @@
+{
+  "schema_version": "5.0",
+  "dataset": {
+    "id": "example.original_36_2024_QH15",
+    "scope": "original_law_example",
+    "coverage_note": "Illustrative extraction from the supplied original-law PDF only, not the law as amended or current in 2026. All legal interpretations remain pending_review. Source text whitespace is normalized once before hashing."
+  },
+  "nodes": [
+    {"id": "doc.36_2024.original", "type": "Document", "document_key": "VN.36_2024_QH15", "title": "Luật Trật tự, an toàn giao thông đường bộ", "document_kind": "law", "issued_on": "2024-06-27", "default_effective_on": "2025-01-01", "jurisdiction": "VN", "source_uri": "https://thuvienphapluat.vn/van-ban/Giao-thong-Van-tai/Luat-trat-tu-an-toan-giao-thong-duong-bo-2024-so-36-2024-QH15-444251.aspx", "source_sha256": "e824b6721a20e1de231b3b7d5e9f3201ab8a3e1a0c5f30ade7d7f1920dfe1611", "coverage_through": null},
+    {"id": "p.chapter2", "type": "Provision", "document_id": "doc.36_2024.original", "parent_id": "doc.36_2024.original", "level": "chapter", "locator": "C2", "ordinal": "II"},
+    {"id": "p.article10", "type": "Provision", "document_id": "doc.36_2024.original", "parent_id": "p.chapter2", "level": "article", "locator": "D10", "ordinal": "10", "title": "Quy tắc chung"},
+    {"id": "p.article10.clause3", "type": "Provision", "document_id": "doc.36_2024.original", "parent_id": "p.article10", "level": "clause", "locator": "D10.K3", "ordinal": "3"},
+    {"id": "p.chapter9", "type": "Provision", "document_id": "doc.36_2024.original", "parent_id": "doc.36_2024.original", "level": "chapter", "locator": "C9", "ordinal": "IX"},
+    {"id": "p.article88", "type": "Provision", "document_id": "doc.36_2024.original", "parent_id": "p.chapter9", "level": "article", "locator": "D88", "ordinal": "88", "title": "Hiệu lực thi hành"},
+    {"id": "p.article88.clause2", "type": "Provision", "document_id": "doc.36_2024.original", "parent_id": "p.article88", "level": "clause", "locator": "D88.K2", "ordinal": "2"},
+    {"id": "chunk.d10k3.original", "type": "Chunk", "provision_id": "p.article10.clause3", "text": "3. Khi chở trẻ em dưới 10 tuổi và chiều cao dưới 1,35 mét trên xe ô tô không được cho trẻ em ngồi cùng hàng ghế với người lái xe, trừ loại xe ô tô chỉ có một hàng ghế; người lái xe phải sử dụng, hướng dẫn sử dụng thiết bị an toàn phù hợp cho trẻ em.", "text_sha256": "a40cc9fcbd6c2d776a856c4a5ff45cf42ca6e0b3194ff879f5f1aa08322664fe", "source_locator": "supplied PDF, page 7, Article 10(3)", "source_revision": "pdf.original.whitespace_v1", "ordinal": 0},
+    {"id": "chunk.d88k2.original", "type": "Chunk", "provision_id": "p.article88.clause2", "text": "2. Khoản 3 Điều 10 của Luật này có hiệu lực thi hành từ ngày 01 tháng 01 năm 2026.", "text_sha256": "7bd3945455112ef09c79eab330c46657dfd138ad545793b9ebe2ba3b499c2a08", "source_locator": "supplied PDF, page 55, Article 88(2)", "source_revision": "pdf.original.whitespace_v1", "ordinal": 0},
+    {"id": "ent.driver", "type": "Entity", "canonical_key": "driver", "name": "Người lái xe", "kind": "person_category", "identity_scope": "VN.36_2024_QH15.original", "aliases": []},
+    {"id": "ent.child", "type": "Entity", "canonical_key": "child", "name": "Trẻ em", "kind": "person_category", "identity_scope": "VN.36_2024_QH15.original", "aliases": []},
+    {"id": "ent.car", "type": "Entity", "canonical_key": "car", "name": "Xe ô tô", "kind": "vehicle_category", "identity_scope": "VN.36_2024_QH15.original", "aliases": []},
+    {"id": "ent.child_restraint", "type": "Entity", "canonical_key": "suitable_child_restraint", "name": "Thiết bị an toàn phù hợp cho trẻ em", "kind": "equipment", "identity_scope": "VN.36_2024_QH15.original", "aliases": []},
+    {
+      "id": "rule.seat.v1.s1", "type": "Rule", "rule_key": "VN.36_2024.D10K3.seat", "version": 1,
+      "provision_id": "p.article10.clause3", "kind": "norm", "modality": "forbidden",
+      "summary": "Không cho trẻ em thuộc điều kiện quy định ngồi cùng hàng ghế với người lái xe; ngoại lệ được nối riêng.",
+      "bindings": [{"var": "driver", "entity_id": "ent.driver", "role": "actor"}, {"var": "child", "entity_id": "ent.child", "role": "beneficiary"}, {"var": "car", "entity_id": "ent.car", "role": "vehicle"}],
+      "action": {"predicate": "seat_child_in_driver_row", "arguments": {"actor": "driver", "child": "child", "vehicle": "car"}},
+      "condition": {"op": "all", "args": [
+        {"op": "predicate", "fact": "child.age_years", "cmp": "lt", "value": 10, "unit": "year"},
+        {"op": "predicate", "fact": "child.height_m", "cmp": "lt", "value": 1.35, "unit": "m"},
+        {"op": "predicate", "fact": "car.carrying_child", "cmp": "eq", "value": true, "unit": "boolean"}
+      ]},
+      "jurisdiction": "VN", "interpretation_scope": "original_36_2024_QH15_only", "valid_from": "2026-01-01", "valid_to": null,
+      "recorded_from": "2026-09-21T00:00:00Z", "recorded_to": null, "review_status": "pending_review",
+      "evidence": [
+        {"chunk_id": "chunk.d10k3.original", "start": 0, "end": 249, "quote": "3. Khi chở trẻ em dưới 10 tuổi và chiều cao dưới 1,35 mét trên xe ô tô không được cho trẻ em ngồi cùng hàng ghế với người lái xe, trừ loại xe ô tô chỉ có một hàng ghế; người lái xe phải sử dụng, hướng dẫn sử dụng thiết bị an toàn phù hợp cho trẻ em.", "purpose": "content"},
+        {"chunk_id": "chunk.d88k2.original", "start": 0, "end": 82, "quote": "2. Khoản 3 Điều 10 của Luật này có hiệu lực thi hành từ ngày 01 tháng 01 năm 2026.", "purpose": "temporal"}
+      ]
+    },
+    {
+      "id": "rule.use.v1.s1", "type": "Rule", "rule_key": "VN.36_2024.D10K3.use_device", "version": 1,
+      "provision_id": "p.article10.clause3", "kind": "norm", "modality": "obligated",
+      "summary": "Người lái xe sử dụng thiết bị an toàn phù hợp cho trẻ em; không gắn ngoại lệ một hàng ghế vào nghĩa vụ này.",
+      "bindings": [{"var": "driver", "entity_id": "ent.driver", "role": "actor"}, {"var": "child", "entity_id": "ent.child", "role": "beneficiary"}, {"var": "car", "entity_id": "ent.car", "role": "vehicle"}, {"var": "device", "entity_id": "ent.child_restraint", "role": "instrument"}],
+      "action": {"predicate": "use_child_restraint", "arguments": {"actor": "driver", "child": "child", "device": "device", "vehicle": "car"}},
+      "condition": {"op": "all", "args": [
+        {"op": "predicate", "fact": "child.age_years", "cmp": "lt", "value": 10, "unit": "year"},
+        {"op": "predicate", "fact": "child.height_m", "cmp": "lt", "value": 1.35, "unit": "m"},
+        {"op": "predicate", "fact": "car.carrying_child", "cmp": "eq", "value": true, "unit": "boolean"}
+      ]},
+      "jurisdiction": "VN", "interpretation_scope": "original_36_2024_QH15_only", "valid_from": "2026-01-01", "valid_to": null,
+      "recorded_from": "2026-09-21T00:00:00Z", "recorded_to": null, "review_status": "pending_review",
+      "evidence": [
+        {"chunk_id": "chunk.d10k3.original", "start": 0, "end": 249, "quote": "3. Khi chở trẻ em dưới 10 tuổi và chiều cao dưới 1,35 mét trên xe ô tô không được cho trẻ em ngồi cùng hàng ghế với người lái xe, trừ loại xe ô tô chỉ có một hàng ghế; người lái xe phải sử dụng, hướng dẫn sử dụng thiết bị an toàn phù hợp cho trẻ em.", "purpose": "content"},
+        {"chunk_id": "chunk.d88k2.original", "start": 0, "end": 82, "quote": "2. Khoản 3 Điều 10 của Luật này có hiệu lực thi hành từ ngày 01 tháng 01 năm 2026.", "purpose": "temporal"}
+      ]
+    },
+    {
+      "id": "rule.instruct.v1.s1", "type": "Rule", "rule_key": "VN.36_2024.D10K3.instruct_device", "version": 1,
+      "provision_id": "p.article10.clause3", "kind": "norm", "modality": "obligated",
+      "summary": "Người lái xe hướng dẫn sử dụng thiết bị an toàn phù hợp cho trẻ em.",
+      "bindings": [{"var": "driver", "entity_id": "ent.driver", "role": "actor"}, {"var": "child", "entity_id": "ent.child", "role": "beneficiary"}, {"var": "car", "entity_id": "ent.car", "role": "vehicle"}, {"var": "device", "entity_id": "ent.child_restraint", "role": "instrument"}],
+      "action": {"predicate": "instruct_child_restraint_use", "arguments": {"actor": "driver", "child": "child", "device": "device", "vehicle": "car"}},
+      "condition": {"op": "all", "args": [
+        {"op": "predicate", "fact": "child.age_years", "cmp": "lt", "value": 10, "unit": "year"},
+        {"op": "predicate", "fact": "child.height_m", "cmp": "lt", "value": 1.35, "unit": "m"},
+        {"op": "predicate", "fact": "car.carrying_child", "cmp": "eq", "value": true, "unit": "boolean"}
+      ]},
+      "jurisdiction": "VN", "interpretation_scope": "original_36_2024_QH15_only", "valid_from": "2026-01-01", "valid_to": null,
+      "recorded_from": "2026-09-21T00:00:00Z", "recorded_to": null, "review_status": "pending_review",
+      "evidence": [
+        {"chunk_id": "chunk.d10k3.original", "start": 0, "end": 249, "quote": "3. Khi chở trẻ em dưới 10 tuổi và chiều cao dưới 1,35 mét trên xe ô tô không được cho trẻ em ngồi cùng hàng ghế với người lái xe, trừ loại xe ô tô chỉ có một hàng ghế; người lái xe phải sử dụng, hướng dẫn sử dụng thiết bị an toàn phù hợp cho trẻ em.", "purpose": "content"},
+        {"chunk_id": "chunk.d88k2.original", "start": 0, "end": 82, "quote": "2. Khoản 3 Điều 10 của Luật này có hiệu lực thi hành từ ngày 01 tháng 01 năm 2026.", "purpose": "temporal"}
+      ]
+    },
+    {
+      "id": "rule.one_row.v1.s1", "type": "Rule", "rule_key": "VN.36_2024.D10K3.one_row_exception", "version": 1,
+      "provision_id": "p.article10.clause3", "kind": "exception", "modality": "none",
+      "summary": "Ngoại lệ xe ô tô chỉ có một hàng ghế, chỉ tác động quy định về vị trí ngồi.",
+      "bindings": [{"var": "car", "entity_id": "ent.car", "role": "vehicle"}],
+      "condition": {"op": "predicate", "fact": "car.seat_rows", "cmp": "eq", "value": 1, "unit": "count"},
+      "jurisdiction": "VN", "interpretation_scope": "original_36_2024_QH15_only", "valid_from": "2026-01-01", "valid_to": null,
+      "recorded_from": "2026-09-21T00:00:00Z", "recorded_to": null, "review_status": "pending_review",
+      "evidence": [
+        {"chunk_id": "chunk.d10k3.original", "start": 0, "end": 249, "quote": "3. Khi chở trẻ em dưới 10 tuổi và chiều cao dưới 1,35 mét trên xe ô tô không được cho trẻ em ngồi cùng hàng ghế với người lái xe, trừ loại xe ô tô chỉ có một hàng ghế; người lái xe phải sử dụng, hướng dẫn sử dụng thiết bị an toàn phù hợp cho trẻ em.", "purpose": "content"},
+        {"chunk_id": "chunk.d88k2.original", "start": 0, "end": 82, "quote": "2. Khoản 3 Điều 10 của Luật này có hiệu lực thi hành từ ngày 01 tháng 01 năm 2026.", "purpose": "temporal"}
+      ]
+    }
+  ],
+  "edges": [
+    {"id": "e.c2", "type": "CONTAINS", "source": "doc.36_2024.original", "target": "p.chapter2"},
+    {"id": "e.d10", "type": "CONTAINS", "source": "p.chapter2", "target": "p.article10"},
+    {"id": "e.d10k3", "type": "CONTAINS", "source": "p.article10", "target": "p.article10.clause3"},
+    {"id": "e.c9", "type": "CONTAINS", "source": "doc.36_2024.original", "target": "p.chapter9"},
+    {"id": "e.d88", "type": "CONTAINS", "source": "p.chapter9", "target": "p.article88"},
+    {"id": "e.d88k2", "type": "CONTAINS", "source": "p.article88", "target": "p.article88.clause2"},
+    {"id": "e.chunk10", "type": "HAS_CHUNK", "source": "p.article10.clause3", "target": "chunk.d10k3.original"},
+    {"id": "e.chunk88", "type": "HAS_CHUNK", "source": "p.article88.clause2", "target": "chunk.d88k2.original"},
+    {"id": "e.rule.seat", "type": "HAS_RULE", "source": "p.article10.clause3", "target": "rule.seat.v1.s1"},
+    {"id": "e.rule.use", "type": "HAS_RULE", "source": "p.article10.clause3", "target": "rule.use.v1.s1"},
+    {"id": "e.rule.instruct", "type": "HAS_RULE", "source": "p.article10.clause3", "target": "rule.instruct.v1.s1"},
+    {"id": "e.rule.exception", "type": "HAS_RULE", "source": "p.article10.clause3", "target": "rule.one_row.v1.s1"},
+    {"id": "e.seat.driver", "type": "ARGUMENT", "source": "rule.seat.v1.s1", "target": "ent.driver", "role": "actor", "var": "driver"},
+    {"id": "e.seat.child", "type": "ARGUMENT", "source": "rule.seat.v1.s1", "target": "ent.child", "role": "beneficiary", "var": "child"},
+    {"id": "e.seat.car", "type": "ARGUMENT", "source": "rule.seat.v1.s1", "target": "ent.car", "role": "vehicle", "var": "car"},
+    {"id": "e.use.driver", "type": "ARGUMENT", "source": "rule.use.v1.s1", "target": "ent.driver", "role": "actor", "var": "driver"},
+    {"id": "e.use.child", "type": "ARGUMENT", "source": "rule.use.v1.s1", "target": "ent.child", "role": "beneficiary", "var": "child"},
+    {"id": "e.use.car", "type": "ARGUMENT", "source": "rule.use.v1.s1", "target": "ent.car", "role": "vehicle", "var": "car"},
+    {"id": "e.use.device", "type": "ARGUMENT", "source": "rule.use.v1.s1", "target": "ent.child_restraint", "role": "instrument", "var": "device"},
+    {"id": "e.instruct.driver", "type": "ARGUMENT", "source": "rule.instruct.v1.s1", "target": "ent.driver", "role": "actor", "var": "driver"},
+    {"id": "e.instruct.child", "type": "ARGUMENT", "source": "rule.instruct.v1.s1", "target": "ent.child", "role": "beneficiary", "var": "child"},
+    {"id": "e.instruct.car", "type": "ARGUMENT", "source": "rule.instruct.v1.s1", "target": "ent.car", "role": "vehicle", "var": "car"},
+    {"id": "e.instruct.device", "type": "ARGUMENT", "source": "rule.instruct.v1.s1", "target": "ent.child_restraint", "role": "instrument", "var": "device"},
+    {"id": "e.exception.car", "type": "ARGUMENT", "source": "rule.one_row.v1.s1", "target": "ent.car", "role": "vehicle", "var": "car"},
+    {"id": "e.exception.seat", "type": "EXCEPTION_TO", "source": "rule.one_row.v1.s1", "target": "rule.seat.v1.s1", "role": "disapply", "binding_map": {"car": "car"}, "recorded_from": "2026-09-21T00:00:00Z", "recorded_to": null, "review_status": "pending_review", "evidence": [
+      {"chunk_id": "chunk.d10k3.original", "start": 0, "end": 249, "quote": "3. Khi chở trẻ em dưới 10 tuổi và chiều cao dưới 1,35 mét trên xe ô tô không được cho trẻ em ngồi cùng hàng ghế với người lái xe, trừ loại xe ô tô chỉ có một hàng ghế; người lái xe phải sử dụng, hướng dẫn sử dụng thiết bị an toàn phù hợp cho trẻ em.", "purpose": "content"}
+    ]}
+  ]
+}
