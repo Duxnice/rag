@@ -1,0 +1,1333 @@
+{
+ "ontology_metadata": {
+  "version": "5.1",
+  "name": "Ontology Thu vien Phap luat Giao thong Duong bo (V5.1 - Unified)",
+  "language": "vi",
+  "source_law": "Luật số 36/2024/QH15 - Luật Trật tự, an toàn giao thông đường bộ",
+  "based_on": [
+   "ontology_v4.1-final (kien truc noi dung, temporal model, validation rules, relation catalog)",
+   "ontology_v5.0 (chuan hoa Rule/kind/modality, evidence contract, condition expression tree, Entity.kind thay vi class rieng)"
+  ],
+  "purpose": "Đầu vào chính thức cho hệ thống Temporal Knowledge Graph / Neo4j / Hybrid RAG. Gộp 1 file duy nhất.",
+  "muc_tieu_nang_cap_so_voi_4_1": [
+   "Giảm số class từ 58 xuống 10 class lưu trữ để tránh phình to schema và bùng nổ label Neo4j.",
+   "Thêm tầng canonicalization (Entity mention -> CanonicalConcept registry) để xử lý đa nghĩa/đồng nghĩa tiếng Việt, tránh sinh thực thể trùng lặp vốn chỉ là 1 khái niệm.",
+   "Tách rõ 'loai_quy_dinh' (kind) khỏi 'hieu_luc_quy_pham' (modality) trong QuyDinh, học từ Rule.kind/Rule.modality của v5.",
+   "Thêm biểu thức điều kiện có cấu trúc (all/any/not/predicate/text) cho DieuKien thay vì chỉ mo_ta dạng text.",
+   "Gộp cac quan hệ cấu trúc CO_PHAN/CO_CHUONG/CO_CHUONG_TU_PHAN/CO_MUC/CO_DIEU/CO_DIEU_TU_MUC/CO_KHOAN/CO_DIEM thành 1 quan hệ CO_DON_VI_CON.",
+   "Gộp cac quan hệ nội dung QUY_DINH_HANH_VI/AP_DUNG_CHO/LIEN_QUAN_PHUONG_TIEN/LIEN_QUAN_HA_TANG/YEU_CAU_GIAY_TO/SU_DUNG_THIET_BI/SU_DUNG_BAO_HIEU thành 1 quan hệ LIEN_QUAN có thuộc tính vai_tro."
+  ]
+ },
+ "document_structure": {
+  "hierarchy": [
+   "VanBan",
+   "Provision(cap=phan, optional)",
+   "Provision(cap=chuong)",
+   "Provision(cap=muc, optional)",
+   "Provision(cap=dieu)",
+   "Provision(cap=khoan)",
+   "Provision(cap=diem)"
+  ],
+  "note": "V4.1 dùng 6 class riêng (Phan/Chuong/Muc/Dieu/Khoan/Diem) cho 6 cấp cấu trúc. V5.1 gộp thành 1 class Provision với thuộc tính 'cap' (level), học theo cách V5 dùng 1 node Provision duy nhất. Lý do gộp: cả 6 class có bộ thuộc tính gần như giống hệt nhau (id, parent_id, so_hieu, ten, noi_dung), chỉ khác nhãn/độ sâu — tách class không thêm giá trị ngữ nghĩa mà chỉ nhân bản schema và constraint.",
+  "id_pattern": "<LoaiVietTat>_<SoHieuVanBan_khongdau>[_C<sochuong>][_M<somuc>][_D<sodieu>][_K<sokhoan>][_P<sodiem>]",
+  "id_pattern_examples": [
+   "VB_36_2024_QH15",
+   "VB_36_2024_QH15_C2_D10",
+   "VB_36_2024_QH15_C2_D10_K3",
+   "VB_36_2024_QH15_C2_D10_K3_Pa",
+   "CHUNK_VB_36_2024_QH15_D10_K3"
+  ]
+ },
+ "classes": {
+  "VanBan": {
+   "description": "Một văn bản pháp luật (Luật/Nghị định/Thông tư/Quyết định/Văn bản hợp nhất...).",
+   "key": "document_id",
+   "attributes": [
+    {
+     "name": "document_id",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "loai_van_ban",
+     "type": "enum",
+     "required": true,
+     "values": [
+      "Luat",
+      "NghiDinh",
+      "ThongTu",
+      "QuyetDinh",
+      "VanBanHopNhat",
+      "Khac"
+     ]
+    },
+    {
+     "name": "so_hieu",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "ten_van_ban",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "ngay_ban_hanh",
+     "type": "date",
+     "required": false
+    },
+    {
+     "name": "ngay_hieu_luc",
+     "type": "date",
+     "required": true
+    },
+    {
+     "name": "ngay_het_hieu_luc",
+     "type": "date",
+     "required": false
+    },
+    {
+     "name": "trang_thai_hieu_luc",
+     "type": "enum",
+     "required": false,
+     "values": [
+      "chua_co_hieu_luc",
+      "dang_hieu_luc",
+      "het_hieu_luc_mot_phan",
+      "het_hieu_luc_toan_bo"
+     ],
+     "description": "Trường derived, tính bằng script tại thời điểm truy vấn, không lưu cứng — xem temporal_model."
+    },
+    {
+     "name": "trang_thai_as_of",
+     "type": "datetime",
+     "required": false,
+     "description": "Thời điểm tính trang_thai_hieu_luc, đi kèm khi trả về trường derived."
+    },
+    {
+     "name": "custom_properties",
+     "type": "object",
+     "required": false
+    }
+   ]
+  },
+  "Provision": {
+   "description": "Đơn vị cấu trúc có địa chỉ trong văn bản (Phần/Chương/Mục/Điều/Khoản/Điểm), gộp từ 6 class riêng của V4.1. Thay thế Chuong/Muc/Phan/Dieu/Khoan/Diem.",
+   "key": "provision_id",
+   "attributes": [
+    {
+     "name": "provision_id",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "cap",
+     "type": "enum",
+     "required": true,
+     "values": [
+      "phan",
+      "chuong",
+      "muc",
+      "dieu",
+      "khoan",
+      "diem"
+     ],
+     "description": "Cấp cấu trúc — thay cho việc tách class riêng."
+    },
+    {
+     "name": "parent_id",
+     "type": "string",
+     "required": true,
+     "description": "ID của Provision cha hoặc VanBan (nếu cap=phan/chuong ở văn bản không có cấp Phần). Nguồn chuẩn cho quan hệ CO_DON_VI_CON."
+    },
+    {
+     "name": "document_id",
+     "type": "string",
+     "required": true,
+     "description": "VanBan gốc — kế thừa nhanh không cần truy ngược parent chain."
+    },
+    {
+     "name": "so_hieu",
+     "type": "string",
+     "required": false,
+     "description": "Số hiệu trong cấp đó, vd '2' cho Điều 2, 'a' cho Điểm a."
+    },
+    {
+     "name": "ten",
+     "type": "string",
+     "required": false,
+     "description": "Tiêu đề nếu có, vd tên Chương/Điều."
+    },
+    {
+     "name": "noi_dung_day_du",
+     "type": "text",
+     "required": false,
+     "description": "Toàn văn nếu cần cho fulltext index (chủ yếu ở cap=dieu)."
+    },
+    {
+     "name": "thu_tu",
+     "type": "int",
+     "required": false,
+     "description": "Thứ tự hiển thị trong cha, để sort ổn định."
+    },
+    {
+     "name": "ngay_hieu_luc_rieng",
+     "type": "date",
+     "required": false,
+     "description": "Ghi đè VanBan.ngay_hieu_luc nếu Provision này có hiệu lực riêng (vd điều khoản chuyển tiếp)."
+    },
+    {
+     "name": "ngay_het_hieu_luc_rieng",
+     "type": "date",
+     "required": false
+    },
+    {
+     "name": "custom_properties",
+     "type": "object",
+     "required": false
+    }
+   ],
+   "validation_note": "cap phải khớp với cap của parent theo thứ tự phan > chuong > muc > dieu > khoan > diem (bỏ qua cấp optional). Xem C7/C18/C20."
+  },
+  "Chunk": {
+   "description": "Đơn vị retrieval cho RAG, bất biến. parent_id (Provision) là nguồn chuẩn.",
+   "key": "chunk_id",
+   "attributes": [
+    {
+     "name": "chunk_id",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "parent_id",
+     "type": "string",
+     "required": true,
+     "description": "ID của Provision chứa chunk này."
+    },
+    {
+     "name": "chunk_level",
+     "type": "enum",
+     "required": true,
+     "values": [
+      "dieu",
+      "khoan",
+      "diem"
+     ]
+    },
+    {
+     "name": "context_text",
+     "type": "text",
+     "required": false
+    },
+    {
+     "name": "full_text",
+     "type": "text",
+     "required": true
+    },
+    {
+     "name": "effective_from",
+     "type": "date",
+     "required": true
+    },
+    {
+     "name": "effective_to",
+     "type": "date",
+     "required": false
+    },
+    {
+     "name": "embedding",
+     "type": "vector",
+     "required": false
+    },
+    {
+     "name": "so_hieu_van_ban",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "ten_van_ban",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "so_dieu",
+     "type": "int",
+     "required": true
+    },
+    {
+     "name": "ten_dieu",
+     "type": "string",
+     "required": false
+    },
+    {
+     "name": "so_khoan",
+     "type": "int",
+     "required": false
+    },
+    {
+     "name": "ky_hieu_diem",
+     "type": "string",
+     "required": false
+    },
+    {
+     "name": "custom_properties",
+     "type": "object",
+     "required": false
+    }
+   ]
+  },
+  "QuyDinh": {
+   "description": "Trung tâm nội dung: một quy định pháp lý nguyên tử, đã reify. Học V5: tách 'kind' (loai_quy_dinh) khỏi 'modality' (hieu_luc_quy_pham) — hai trục độc lập thay vì gộp chung 1 enum như V4.1.",
+   "key": "quydinh_id",
+   "attributes": [
+    {
+     "name": "quydinh_id",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "rule_key",
+     "type": "string",
+     "required": true,
+     "description": "Định danh logic ổn định xuyên các phiên bản (giống rule_key của V5) — dùng cho PHIEN_BAN_MOI_CUA."
+    },
+    {
+     "name": "loai_quy_dinh",
+     "type": "enum",
+     "required": true,
+     "values": [
+      "quy_pham_chung",
+      "dinh_nghia",
+      "giao_nhiem_vu_tham_quyen",
+      "che_tai",
+      "ngoai_le",
+      "chuyen_tiep",
+      "trinh_tu_thu_tuc"
+     ],
+     "description": "kind — mục đích của quy định, trung tính về lực quy phạm (học Rule.kind của V5)."
+    },
+    {
+     "name": "hieu_luc_quy_pham",
+     "type": "enum",
+     "required": true,
+     "values": [
+      "bat_buoc",
+      "cam",
+      "cho_phep",
+      "khong_mang_luc"
+     ],
+     "description": "modality — lực quy phạm thực sự (học Rule.modality của V5). Tách khỏi loai_quy_dinh để 1 quy định 'ngoại lệ' vẫn có modality riêng (vd ngoại lệ cho phép)."
+    },
+    {
+     "name": "mo_ta",
+     "type": "text",
+     "required": true
+    },
+    {
+     "name": "phien_ban",
+     "type": "int",
+     "required": true
+    },
+    {
+     "name": "valid_from",
+     "type": "date",
+     "required": true
+    },
+    {
+     "name": "valid_to",
+     "type": "date",
+     "required": false
+    },
+    {
+     "name": "evidence_chunk_id",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "evidence_quote",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "evidence_purpose",
+     "type": "enum",
+     "required": false,
+     "values": [
+      "noi_dung",
+      "thoi_gian",
+      "danh_tinh"
+     ],
+     "description": "Học từ V5 evidence.purpose."
+    },
+    {
+     "name": "confidence",
+     "type": "float",
+     "required": false
+    },
+    {
+     "name": "extraction_status",
+     "type": "enum",
+     "required": false,
+     "values": [
+      "auto",
+      "pending_review",
+      "verified",
+      "rejected"
+     ]
+    },
+    {
+     "name": "first_seen_chunk_id",
+     "type": "string",
+     "required": false
+    },
+    {
+     "name": "jurisdiction",
+     "type": "string",
+     "required": false,
+     "description": "Phạm vi hiệu lực địa lý/thẩm quyền, mặc định toàn quốc — học V5.jurisdiction."
+    },
+    {
+     "name": "interpretation_scope",
+     "type": "string",
+     "required": false,
+     "description": "Phạm vi diễn giải/corpus mà QuyDinh thuộc về — học V5.interpretation_scope."
+    },
+    {
+     "name": "custom_properties",
+     "type": "object",
+     "required": false
+    }
+   ]
+  },
+  "HanhVi": {
+   "description": "Hành vi trung tính (không mang nghĩa cấm/cho phép). Vai trò của các bên tham gia hành vi nằm ở quan hệ LIEN_QUAN (vai_tro), không nằm trong node này.",
+   "key": "hanhvi_id",
+   "attributes": [
+    {
+     "name": "hanhvi_id",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "ten_hanh_vi",
+     "type": "string",
+     "required": true,
+     "description": "Predicate ổn định, vd 'su_dung_thiet_bi_an_toan_cho_tre_em' — nên tra cứu action_catalog trước khi tạo predicate mới."
+    },
+    {
+     "name": "mo_ta",
+     "type": "text",
+     "required": false
+    },
+    {
+     "name": "custom_properties",
+     "type": "object",
+     "required": false
+    }
+   ]
+  },
+  "DieuKien": {
+   "description": "Điều kiện áp dụng cho một QuyDinh. Nâng cấp so với V4.1: thêm bieu_thuc (cây biểu thức có cấu trúc) học từ V5.condition, giữ mo_ta làm fallback khi chưa cấu trúc hóa được an toàn.",
+   "key": "dieukien_id",
+   "attributes": [
+    {
+     "name": "dieukien_id",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "mo_ta",
+     "type": "text",
+     "required": true,
+     "description": "Mô tả điều kiện bằng ngôn ngữ tự nhiên — bắt buộc, luôn giữ làm nguồn đối chiếu."
+    },
+    {
+     "name": "loai_dieu_kien",
+     "type": "enum",
+     "required": false,
+     "values": [
+      "thoi_gian",
+      "khong_gian",
+      "chu_the",
+      "phuong_tien",
+      "moi_truong",
+      "khac"
+     ]
+    },
+    {
+     "name": "bieu_thuc",
+     "type": "expression_tree",
+     "required": false,
+     "values": "Cây biểu thức có cấu trúc (xem $defs.expression bên dưới): all/any/not/predicate/text. Chỉ điền khi có thể an toàn cấu trúc hóa; để null thì hệ thống dùng logic 3 giá trị unknown, không suy diễn."
+    },
+    {
+     "name": "custom_properties",
+     "type": "object",
+     "required": false
+    }
+   ]
+  },
+  "CheTai": {
+   "description": "Hình thức xử lý/mức phạt. Temporal nằm trên cạnh CO_CHE_TAI.",
+   "key": "chetai_id",
+   "attributes": [
+    {
+     "name": "chetai_id",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "hinh_thuc",
+     "type": "enum",
+     "required": true,
+     "values": [
+      "phat_tien",
+      "tuoc_giay_phep",
+      "tam_giu_phuong_tien",
+      "canh_cao",
+      "khac"
+     ]
+    },
+    {
+     "name": "muc_phat_min",
+     "type": "float",
+     "required": false
+    },
+    {
+     "name": "muc_phat_max",
+     "type": "float",
+     "required": false
+    },
+    {
+     "name": "don_vi_tien_te",
+     "type": "string",
+     "required": false,
+     "values": [
+      "VND"
+     ]
+    },
+    {
+     "name": "thoi_han_tuoc_giay_phep_thang",
+     "type": "int",
+     "required": false
+    },
+    {
+     "name": "doi_tuong_ap_dung",
+     "type": "string",
+     "required": false
+    },
+    {
+     "name": "custom_properties",
+     "type": "object",
+     "required": false
+    }
+   ]
+  },
+  "KhaiNiem": {
+   "description": "Khái niệm được định nghĩa chính thức trong luật (thường Điều 2). Khác CanonicalConcept: đây là nội dung pháp lý có evidence trong văn bản, không phải registry kỹ thuật để khử trùng lặp. Một KhaiNiem có thể liên kết tới đúng 1 CanonicalConcept qua quan hệ CHINH_THUC_HOA.",
+   "key": "khainiem_id",
+   "attributes": [
+    {
+     "name": "khainiem_id",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "ten_khai_niem",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "dinh_nghia",
+     "type": "text",
+     "required": true
+    },
+    {
+     "name": "custom_properties",
+     "type": "object",
+     "required": false
+    }
+   ]
+  },
+  "Entity": {
+   "description": "Một lần xuất hiện/occurrence của một thực thể miền được trích xuất từ Chunk (mention layer). THAY THẾ 27 class DomainEntity/PhuongTien/XeOTo/BienBaoGiaoThong/... của V4.1. Loại cụ thể nằm ở thuộc tính, không phải ở class hay nhãn Neo4j riêng — học đúng tinh thần Entity.kind của V5. Mỗi Entity bắt buộc resolve về đúng 1 CanonicalConcept.",
+   "key": "entity_id",
+   "attributes": [
+    {
+     "name": "entity_id",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "ten_xuat_hien",
+     "type": "string",
+     "required": true,
+     "description": "Chuỗi văn bản gốc như nó xuất hiện trong Chunk (surface form thực tế), KHÔNG chuẩn hóa."
+    },
+    {
+     "name": "nhom_lon",
+     "type": "enum",
+     "required": true,
+     "values": [
+      "ChuThe",
+      "PhuongTien",
+      "HaTangGiaoThong",
+      "BaoHieu",
+      "ThietBi",
+      "GiayToPhapLy",
+      "SuKienPhapLy",
+      "ThietCheTaiChinh",
+      "DieuKienMoiTruong"
+     ],
+     "description": "9 nhóm lớn giữ nguyên từ class_hierarchy gốc của V4.1 — nay là giá trị enum thay vì class."
+    },
+    {
+     "name": "loai_cu_the",
+     "type": "string",
+     "required": false,
+     "description": "Loại chi tiết vd 'XeOTo', 'BienBaoGiaoThong' — tra cứu taxonomy_registry.loai_cu_the_goi_y; không tự phát minh giá trị mới khi đã có canonical phù hợp."
+    },
+    {
+     "name": "canonical_id",
+     "type": "string",
+     "required": true,
+     "description": "FK bắt buộc tới CanonicalConcept.canonical_id — mọi Entity phải resolve trước khi ghi vào graph."
+    },
+    {
+     "name": "evidence_chunk_id",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "evidence_quote",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "confidence",
+     "type": "float",
+     "required": false
+    },
+    {
+     "name": "custom_properties",
+     "type": "object",
+     "required": false
+    }
+   ]
+  },
+  "CanonicalConcept": {
+   "description": "MỚI trong V5.1. Registry khái niệm đã chuẩn hóa — nơi hợp nhất các Entity mention khác câu chữ nhưng cùng 1 nghĩa, và tách các Entity giống câu chữ nhưng khác nghĩa. Giải quyết trực tiếp vấn đề tiếng Việt đa nghĩa/đồng nghĩa. Không mang evidence riêng (evidence thuộc về từng Entity mention link tới nó).",
+   "key": "canonical_id",
+   "attributes": [
+    {
+     "name": "canonical_id",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "canonical_name",
+     "type": "string",
+     "required": true,
+     "description": "Tên chuẩn duy nhất dùng để hiển thị/truy vấn, do người review hoặc pipeline chốt."
+    },
+    {
+     "name": "nhom_lon",
+     "type": "enum",
+     "required": true,
+     "values": [
+      "ChuThe",
+      "PhuongTien",
+      "HaTangGiaoThong",
+      "BaoHieu",
+      "ThietBi",
+      "GiayToPhapLy",
+      "SuKienPhapLy",
+      "ThietCheTaiChinh",
+      "DieuKienMoiTruong"
+     ]
+    },
+    {
+     "name": "loai_cu_the",
+     "type": "string",
+     "required": false
+    },
+    {
+     "name": "synonyms",
+     "type": "array<string>",
+     "required": false,
+     "description": "Các cách gọi khác nhau nhưng cùng nghĩa chuẩn (vd 'ô tô con', 'xe con', 'xe hơi 4 chỗ')."
+    },
+    {
+     "name": "aliases",
+     "type": "array<string>",
+     "required": false,
+     "description": "Tên viết tắt/ký hiệu chính thức (vd 'GPLX' cho 'Giấy phép lái xe')."
+    },
+    {
+     "name": "surface_forms",
+     "type": "array<string>",
+     "required": false,
+     "description": "Tổng hợp tự động toàn bộ ten_xuat_hien của các Entity đã resolve về canonical này — phục vụ fuzzy-match cho lần trích xuất sau, không cần nhập tay."
+    },
+    {
+     "name": "dinh_nghia_tham_chieu",
+     "type": "string",
+     "required": false,
+     "description": "Optional FK tới KhaiNiem.khainiem_id nếu khái niệm này được luật định nghĩa chính thức."
+    },
+    {
+     "name": "review_status",
+     "type": "enum",
+     "required": false,
+     "values": [
+      "pending_review",
+      "verified",
+      "rejected"
+     ]
+    },
+    {
+     "name": "custom_properties",
+     "type": "object",
+     "required": false
+    }
+   ]
+  }
+ },
+ "taxonomy_registry": {
+  "note": "Thay thế class_hierarchy của V4.1. Đây là DỮ LIỆU/gợi ý kiểm soát từ vựng cho Entity.loai_cu_the và CanonicalConcept.loai_cu_the, KHÔNG phải class Neo4j. Phân cấp con-cha sâu hơn (vd XeOTo dưới XeCoGioi dưới PhuongTien) biểu diễn bằng quan hệ IS_A giữa các CanonicalConcept, không bằng multi-label.",
+  "nhom_lon": [
+   "ChuThe",
+   "PhuongTien",
+   "HaTangGiaoThong",
+   "BaoHieu",
+   "ThietBi",
+   "GiayToPhapLy",
+   "SuKienPhapLy",
+   "ThietCheTaiChinh",
+   "DieuKienMoiTruong"
+  ],
+  "loai_cu_the_goi_y": {
+   "ChuThe": [
+    "NguoiThamGiaGiaoThong",
+    "NguoiDieuKhienPhuongTien",
+    "NguoiDiBo",
+    "HanhKhach",
+    "ChuPhuongTien",
+    "ToChuc",
+    "CoQuan",
+    "CoQuanQuanLyNhaNuoc",
+    "LucLuongThucThi"
+   ],
+   "PhuongTien": [
+    "XeCoGioi",
+    "XeOTo",
+    "XeMayXeGanMay",
+    "XeThoSo",
+    "XeDapDien"
+   ],
+   "HaTangGiaoThong": [
+    "DuongBo",
+    "NutGiao",
+    "CauHamDuong",
+    "BenBaiDo",
+    "ViaHeLeDuong"
+   ],
+   "BaoHieu": [
+    "BienBaoGiaoThong",
+    "DenTinHieu",
+    "VachKeDuong"
+   ],
+   "ThietBi": [
+    "ThietBiGiamSat",
+    "ThietBiHoTro"
+   ],
+   "GiayToPhapLy": [
+    "GiayPhepLaiXe",
+    "DangKyXe",
+    "GiayChungNhanKiemDinh",
+    "BaoHiemTNDS"
+   ],
+   "SuKienPhapLy": [
+    "TaiNanGiaoThong",
+    "ViPhamHanhChinh",
+    "KiemTraXuLy"
+   ],
+   "ThietCheTaiChinh": [
+    "QuyBaoTriDuongBo",
+    "LePhiGiaoThong"
+   ],
+   "DieuKienMoiTruong": [
+    "ThoiTiet",
+    "TinhTrangDuong"
+   ]
+  },
+  "mo_rong": "Thêm loai_cu_the mới = thêm 1 chuỗi vào danh sách gợi ý + 1 CanonicalConcept mẫu, KHÔNG cần sửa schema/class — đúng nguyên tắc mở rộng của V5 (mục 15 README V5)."
+ },
+ "$defs": {
+  "expression": {
+   "description": "Cây biểu thức điều kiện dùng cho DieuKien.bieu_thuc — học nguyên bản từ V5 README mục 4.",
+   "oneOf_kinds": {
+    "all": "Tất cả điều kiện con (children: array<expression>) phải đúng.",
+    "any": "Ít nhất một điều kiện con đúng.",
+    "not": "Phủ định 1 điều kiện con.",
+    "predicate": "So sánh 1 fact có kiểu và đơn vị, vd {fact:'age_years', op:'<', value:10, unit:'year'}. fact phải khớp fact_catalog trong runtime layer, không tự phát minh.",
+    "text": "Điều kiện chưa thể cấu trúc hóa an toàn — giữ dạng text, đánh dấu can_structure=false."
+   },
+   "example": "all[ predicate(child.age_years < 10), predicate(child.height_m < 1.35), predicate(car.carrying_child = true) ]",
+   "danh_gia": "Ứng dụng dùng logic 3 giá trị true/false/unknown. Thiếu dữ kiện KHÔNG được coi mặc định là true hoặc false."
+  }
+ },
+ "edge_properties": {
+  "structural_edges": {
+   "description": "Cạnh cấu trúc (VanBan->Provision->Provision->...->Chunk). Sinh tự động bằng code từ parent_id.",
+   "properties": [
+    {
+     "name": "created_by",
+     "type": "enum",
+     "required": true,
+     "values": [
+      "system"
+     ]
+    }
+   ]
+  },
+  "content_edges": {
+   "description": "Cạnh nội dung pháp lý do LLM trích xuất từ Chunk. Bắt buộc evidence. Áp dụng cho QUY_DINH_HANH_VI/LIEN_QUAN/CO_DIEU_KIEN/CO_NGOAI_LE/CO_CHE_TAI/DINH_NGHIA/QUY_DINH_TRACH_NHIEM/DUOC_UY_QUYEN.",
+   "properties": [
+    {
+     "name": "evidence_chunk_id",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "evidence_quote",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "confidence",
+     "type": "float",
+     "required": true
+    },
+    {
+     "name": "extraction_method",
+     "type": "enum",
+     "required": true,
+     "values": [
+      "llm_extraction",
+      "rule_based",
+      "manual_review"
+     ]
+    },
+    {
+     "name": "extraction_status",
+     "type": "enum",
+     "required": true,
+     "values": [
+      "auto",
+      "pending_review",
+      "verified",
+      "rejected"
+     ]
+    },
+    {
+     "name": "valid_from",
+     "type": "date",
+     "required": true
+    },
+    {
+     "name": "valid_to",
+     "type": "date",
+     "required": false
+    },
+    {
+     "name": "created_at",
+     "type": "datetime",
+     "required": true
+    }
+   ]
+  },
+  "temporal_edges": {
+   "description": "Cạnh giữa các VanBan/Provision/QuyDinh theo thời gian (CAN_CU/THAY_THE/SUA_DOI/BAI_BO/PHIEN_BAN_MOI_CUA/HOP_NHAT_TU).",
+   "properties": [
+    {
+     "name": "valid_from",
+     "type": "date",
+     "required": true
+    },
+    {
+     "name": "valid_to",
+     "type": "date",
+     "required": false
+    },
+    {
+     "name": "can_cu_dieu_khoan",
+     "type": "string",
+     "required": false
+    }
+   ]
+  },
+  "canonical_edges": {
+   "description": "MỚI. Cạnh CANONICAL_LA (Entity->CanonicalConcept) và IS_A (CanonicalConcept->CanonicalConcept).",
+   "properties": [
+    {
+     "name": "match_method",
+     "type": "enum",
+     "required": true,
+     "values": [
+      "trung_khop_ten",
+      "alias",
+      "synonym",
+      "fuzzy_string",
+      "llm_disambiguation",
+      "manual_review"
+     ],
+     "description": "Cách hệ thống resolve Entity mention về CanonicalConcept — bắt buộc để audit lại khi có sai."
+    },
+    {
+     "name": "match_score",
+     "type": "float",
+     "required": false,
+     "description": "Điểm tin cậy resolve, vd cosine similarity hoặc string-match score."
+    },
+    {
+     "name": "created_at",
+     "type": "datetime",
+     "required": true
+    }
+   ]
+  }
+ },
+ "relation_definitions": [
+  {
+   "name": "CO_DON_VI",
+   "domain": "VanBan",
+   "range": "Provision",
+   "category": "structural",
+   "description": "Văn bản có đơn vị cấu trúc cấp cao nhất (Phần nếu có, hoặc Chương).",
+   "cardinality": "1:N"
+  },
+  {
+   "name": "CO_DON_VI_CON",
+   "domain": "Provision",
+   "range": "Provision",
+   "category": "structural",
+   "description": "Đơn vị cấu trúc chứa đơn vị con liền kề theo cấp (Phần->Chương, Chương->Mục hoặc Chương->Điều, Mục->Điều, Điều->Khoản, Khoản->Điểm).",
+   "cardinality": "1:N",
+   "note": "GỘP 6 quan hệ CO_CHUONG_TU_PHAN/CO_MUC/CO_DIEU/CO_DIEU_TU_MUC/CO_KHOAN/CO_DIEM của V4.1 thành 1 quan hệ tổng quát vì domain/range đều là Provision->Provision sau khi gộp class. Cấp cụ thể suy ra từ Provision.cap của 2 đầu, không cần loại cạnh riêng."
+  },
+  {
+   "name": "CO_CHUNK",
+   "domain": "Provision",
+   "range": "Chunk",
+   "category": "structural",
+   "description": "Đơn vị cấu trúc có chunk tương ứng phục vụ RAG. Mỗi Chunk đúng 1 parent.",
+   "cardinality": "1:N"
+  },
+  {
+   "name": "BAN_HANH_BOI",
+   "domain": "VanBan",
+   "range": "Entity",
+   "category": "structural",
+   "description": "Văn bản do cơ quan nào ban hành. Entity đích phải có nhom_lon=ChuThe, loai_cu_the thuộc CoQuan/CoQuanQuanLyNhaNuoc. Giữ N:N vì có văn bản liên tịch.",
+   "cardinality": "N:N"
+  },
+  {
+   "name": "CHUA_QUY_DINH",
+   "domain": "Provision",
+   "range": "QuyDinh",
+   "category": "content",
+   "description": "Đơn vị nội dung (thường cap=khoan/diem) chứa quy định pháp lý cụ thể. Evidence nằm trong QuyDinh.",
+   "cardinality": "1:N"
+  },
+  {
+   "name": "QUY_DINH_HANH_VI",
+   "domain": "QuyDinh",
+   "range": "HanhVi",
+   "category": "content",
+   "description": "Quy định điều chỉnh hành vi nào.",
+   "cardinality": "N:1"
+  },
+  {
+   "name": "LIEN_QUAN",
+   "domain": "QuyDinh|HanhVi",
+   "range": "Entity",
+   "category": "content",
+   "description": "Quy định/hành vi liên quan tới một Entity, vai trò cụ thể nằm ở thuộc tính vai_tro.",
+   "cardinality": "N:N",
+   "note": "GỘP AP_DUNG_CHO + LIEN_QUAN_PHUONG_TIEN + LIEN_QUAN_HA_TANG + YEU_CAU_GIAY_TO + SU_DUNG_THIET_BI + SU_DUNG_BAO_HIEU (6 quan hệ của V4.1) thành 1 quan hệ, học đúng mẫu ARGUMENT+role của V5 — tránh phải thêm quan hệ mới mỗi khi có 1 nhom_lon Entity mới."
+  },
+  {
+   "name": "CO_DIEU_KIEN",
+   "domain": "QuyDinh",
+   "range": "DieuKien",
+   "category": "content",
+   "description": "Quy định chỉ áp dụng khi có điều kiện.",
+   "cardinality": "N:N"
+  },
+  {
+   "name": "CO_NGOAI_LE",
+   "domain": "QuyDinh",
+   "range": "QuyDinh",
+   "category": "content",
+   "description": "Quy định A có ngoại lệ là quy định B (B.loai_quy_dinh='ngoai_le').",
+   "cardinality": "N:N"
+  },
+  {
+   "name": "CO_CHE_TAI",
+   "domain": "QuyDinh",
+   "range": "CheTai",
+   "category": "content",
+   "description": "Vi phạm quy định này bị xử lý thế nào. Temporal trên cạnh.",
+   "cardinality": "N:N"
+  },
+  {
+   "name": "DINH_NGHIA",
+   "domain": "QuyDinh",
+   "range": "KhaiNiem",
+   "category": "content",
+   "description": "Quy định (loai_quy_dinh=dinh_nghia) định nghĩa khái niệm.",
+   "cardinality": "1:1"
+  },
+  {
+   "name": "QUY_DINH_TRACH_NHIEM",
+   "domain": "QuyDinh",
+   "range": "Entity",
+   "category": "content",
+   "description": "Điều giao trách nhiệm quản lý cho cơ quan nào. Entity đích phải nhom_lon=ChuThe.",
+   "cardinality": "N:N"
+  },
+  {
+   "name": "DUOC_UY_QUYEN",
+   "domain": "QuyDinh",
+   "range": "VanBan",
+   "category": "content",
+   "description": "QuyDinh giao Chính phủ/Bộ ban hành văn bản hướng dẫn chi tiết. Range chỉ được trỏ VanBan có loai_van_ban thuộc {NghiDinh, ThongTu, QuyetDinh}.",
+   "cardinality": "N:N"
+  },
+  {
+   "name": "THAM_CHIEU",
+   "domain": "VanBan|Provision|QuyDinh",
+   "range": "VanBan|Provision|QuyDinh",
+   "category": "content",
+   "description": "Tham chiếu tới đơn vị khác. Bắt buộc resolve về id cụ thể trước khi tạo cạnh; dùng cùng tham_chieu_properties như V4.1.",
+   "cardinality": "N:N"
+  },
+  {
+   "name": "CANONICAL_LA",
+   "domain": "Entity",
+   "range": "CanonicalConcept",
+   "category": "canonicalization",
+   "description": "Entity mention resolve về đúng 1 khái niệm chuẩn hóa. Bắt buộc với mọi Entity.",
+   "cardinality": "N:1"
+  },
+  {
+   "name": "IS_A",
+   "domain": "CanonicalConcept",
+   "range": "CanonicalConcept",
+   "category": "canonicalization",
+   "description": "Khái niệm hẹp thuộc khái niệm rộng hơn cùng nhom_lon (vd XeOTo IS_A XeCoGioi IS_A PhuongTien). Thay thế class_hierarchy đa cấp của V4.1 bằng taxonomy dữ liệu, có evidence/scope/thời gian như V5.",
+   "cardinality": "N:1",
+   "note": "Mang thêm scope_document_id, valid_from, valid_to (asserted, có evidence) — học IS_A của V5 mục 5."
+  },
+  {
+   "name": "CHINH_THUC_HOA",
+   "domain": "KhaiNiem",
+   "range": "CanonicalConcept",
+   "category": "canonicalization",
+   "description": "Khái niệm được luật định nghĩa chính thức tương ứng với CanonicalConcept nào trong registry kỹ thuật.",
+   "cardinality": "1:1"
+  },
+  {
+   "name": "CAN_CU",
+   "domain": "VanBan",
+   "range": "VanBan",
+   "category": "temporal",
+   "description": "Văn bản được ban hành căn cứ trên văn bản khác.",
+   "cardinality": "N:N"
+  },
+  {
+   "name": "THAY_THE",
+   "domain": "VanBan",
+   "range": "VanBan",
+   "category": "temporal",
+   "description": "Văn bản A thay thế toàn bộ văn bản B (SUPERSEDES).",
+   "cardinality": "1:1"
+  },
+  {
+   "name": "SUA_DOI",
+   "domain": "VanBan",
+   "range": "VanBan|Provision",
+   "category": "temporal",
+   "description": "Văn bản A sửa đổi văn bản B hoặc một Provision cụ thể.",
+   "cardinality": "N:N"
+  },
+  {
+   "name": "BAI_BO",
+   "domain": "VanBan",
+   "range": "VanBan|Provision",
+   "category": "temporal",
+   "description": "Văn bản A bãi bỏ văn bản/Provision B (REPEALS).",
+   "cardinality": "N:N"
+  },
+  {
+   "name": "PHIEN_BAN_MOI_CUA",
+   "domain": "QuyDinh",
+   "range": "QuyDinh",
+   "category": "temporal",
+   "description": "QuyDinh mới thay thế QuyDinh cũ (do Provision gốc bị SUA_DOI). Cơ chế versioning theo rule_key.",
+   "cardinality": "1:1"
+  },
+  {
+   "name": "HOP_NHAT_TU",
+   "domain": "VanBan",
+   "range": "VanBan",
+   "category": "temporal",
+   "description": "VanBan loại VanBanHopNhat được hợp nhất từ 1+ VanBan gốc.",
+   "cardinality": "N:N"
+  }
+ ],
+ "lien_quan_vai_tro": {
+  "description": "Thuộc tính vai_tro bắt buộc trên mọi cạnh LIEN_QUAN — thay thế việc phải tạo 1 loại quan hệ riêng cho mỗi nhom_lon Entity.",
+  "values": {
+   "tac_nhan": "actor — chủ thể thực hiện hành vi (học V5 role 'actor').",
+   "doi_tuong_huong_loi": "beneficiary — đối tượng được bảo vệ/hưởng lợi, vd trẻ em trong quy định ghế ngồi.",
+   "co_quan_co_tham_quyen": "authority — cơ quan có thẩm quyền liên quan.",
+   "phuong_tien": "vehicle — thay LIEN_QUAN_PHUONG_TIEN cũ.",
+   "ha_tang": "location/infrastructure — thay LIEN_QUAN_HA_TANG cũ.",
+   "giay_to_yeu_cau": "required_document — thay YEU_CAU_GIAY_TO cũ.",
+   "thiet_bi": "instrument — thay SU_DUNG_THIET_BI cũ.",
+   "bao_hieu": "signal — thay SU_DUNG_BAO_HIEU cũ.",
+   "boi_canh": "context — điều kiện/hoàn cảnh liên quan không thuộc các vai trò trên."
+  }
+ },
+ "canonicalization_layer": {
+  "van_de_giai_quyet": [
+   "Tiếng Việt đa nghĩa: 1 câu/cụm từ có thể mang nhiều nghĩa khác nhau tùy ngữ cảnh.",
+   "Đồng nghĩa bề mặt: nhiều cách viết/cách gọi khác nhau nhưng cùng chỉ 1 khái niệm (vd 'ô tô', 'xe hơi', 'xe 4 bánh' đều -> XeOTo), nếu không chuẩn hóa sẽ sinh nhiều Entity trùng lặp vốn chỉ là 1."
+  ],
+  "kien_truc": "Entity (mention, có evidence, giữ nguyên câu chữ gốc ten_xuat_hien) --CANONICAL_LA--> CanonicalConcept (registry chuẩn hóa, không lặp evidence, gom synonyms/aliases/surface_forms). Rule/QuyDinh/HanhVi trỏ tới Entity qua LIEN_QUAN; muốn hỏi theo khái niệm chuẩn thì đi tiếp 1 hop CANONICAL_LA.",
+  "resolution_pipeline": [
+   "1. LLM trích xuất 1 mention text từ Chunk -> tạo Entity với ten_xuat_hien = nguyên văn.",
+   "2. Thử khớp exact với CanonicalConcept.canonical_name/aliases/synonyms/surface_forms đã có (match_method=trung_khop_ten/alias/synonym).",
+   "3. Nếu không khớp exact, thử fuzzy string match trong cùng nhom_lon (match_method=fuzzy_string), có ngưỡng match_score.",
+   "4. Nếu vẫn mơ hồ (đa nghĩa thật sự, không chỉ khác câu chữ), dùng LLM phân giải theo ngữ cảnh Chunk (match_method=llm_disambiguation), gắn confidence thấp -> extraction_status=pending_review.",
+   "5. Nếu không tìm được canonical phù hợp, tạo CanonicalConcept mới (review_status=pending_review) thay vì ép vào canonical gần đúng.",
+   "6. Sau khi resolve, thêm ten_xuat_hien vào CanonicalConcept.surface_forms nếu chưa có — registry tự lớn dần, giảm dần việc tạo canonical mới theo thời gian.",
+   "7. Con người review các CanonicalConcept mới/pending_review định kỳ, có thể merge 2 canonical bị tách nhầm hoặc tách 1 canonical bị gộp nhầm (2 nghĩa khác nhau)."
+  ],
+  "nguyen_tac": [
+   "canonical_name do người review hoặc pipeline đã verified chốt, không phải trường tự do ai cũng sửa.",
+   "Không tự động merge 2 CanonicalConcept khác nhom_lon dù tên giống nhau.",
+   "confidence thấp trong bước resolve không tự động là sai — chỉ là cần review, giữ nguyên logic 3 giá trị như phần condition."
+  ]
+ },
+ "tham_chieu_properties": {
+  "loai_tham_chieu": {
+   "type": "enum",
+   "required": true,
+   "values": [
+    "noi_bo_cung_dieu",
+    "noi_bo_cung_van_ban",
+    "lien_van_ban",
+    "dan_chieu_dinh_nghia",
+    "dan_chieu_xu_ly"
+   ],
+   "description": "noi_bo_cung_van_ban: tham chiếu Provision khác trong cùng Luật. lien_van_ban: trỏ sang VanBan khác. dan_chieu_dinh_nghia: trỏ tới Điều 2 / KhaiNiem. dan_chieu_xu_ly: trỏ tới quy định xử lý vi phạm."
+  },
+  "ref_text": {
+   "type": "string",
+   "description": "Nguyên văn cụm từ tham chiếu."
+  }
+ },
+ "temporal_model": {
+  "principle": "Thời gian là thuộc tính, không phải node. Không có class ThoiGian.",
+  "single_source_of_truth": {
+   "van_ban_cap": "VanBan.ngay_hieu_luc / ngay_het_hieu_luc + cạnh THAY_THE/SUA_DOI/BAI_BO có valid_from",
+   "provision_cap": "Provision có ngay_hieu_luc_rieng/ngay_het_hieu_luc_rieng (optional) để ghi đè VanBan.",
+   "noi_dung_cap": "QuyDinh.valid_from/valid_to là nguồn gốc cho nội dung. Khi Provision gốc bị SUA_DOI, pipeline trích xuất lại QuyDinh mới (rule_key giữ nguyên, phien_ban += 1), đặt QuyDinh cũ valid_to = ngày sửa đổi có hiệu lực, tạo cạnh PHIEN_BAN_MOI_CUA(moi -> cu).",
+   "chunk_cap": "Chunk.effective_from/to kế thừa từ parent trừ khi ghi đè. Lịch sử text nằm ở Chunk, không xóa chunk cũ.",
+   "cache_cap": "VanBan.trang_thai_hieu_luc là cache, tính lại bằng script + trang_thai_as_of. Không lưu cứng."
+  },
+  "update_pipeline_khi_co_luat_moi": [
+   "1. Thêm node VanBan mới vào thư viện.",
+   "2. Tạo cạnh CAN_CU/SUA_DOI/BAI_BO từ VanBan mới tới VanBan/Provision bị ảnh hưởng, valid_from = ngày hiệu lực văn bản mới. Range tới đơn vị nhỏ nhất bị tác động.",
+   "3. Chạy lại extraction cho các Provision bị SUA_DOI: tạo QuyDinh mới (phien_ban += 1), gán PHIEN_BAN_MOI_CUA tới QuyDinh cũ. Chỉ đóng valid_to cũ khi QuyDinh mới có hiệu lực.",
+   "4. Cho phép valid_to = valid_from (khoảng rỗng = chưa từng có hiệu lực).",
+   "5. valid_from của VanBan gốc tính theo điều khoản hiệu lực đã sửa (hiện hành), không lấy cứng từ văn bản gốc.",
+   "6. Chạy lại script derive trang_thai_hieu_luc cho VanBan liên quan.",
+   "7. Sinh Chunk mới cho nội dung sửa đổi, không xóa Chunk cũ.",
+   "8. Không thêm canonical_scope riêng cho QuyDinh. 'Cùng quy định' suy ra từ việc hai QuyDinh cùng gắn với một Provision qua CHUA_QUY_DINH và cùng rule_key.",
+   "9. Entity/CanonicalConcept KHÔNG có version theo VanBan — nếu 1 khái niệm bị luật mới định nghĩa lại nghĩa khác hẳn, tạo CanonicalConcept mới và cập nhật CHINH_THUC_HOA, không sửa canonical cũ."
+  ],
+  "query_patterns_ho_tro": [
+   "Lấy quy định hiện hành cho 1 Provision: lọc valid_from <= $t < coalesce(valid_to, ...).",
+   "Lấy quy định tại 1 thời điểm quá khứ: lọc theo khoảng.",
+   "Truy vết lịch sử: theo chuỗi PHIEN_BAN_MOI_CUA ngược về quá khứ (cùng rule_key).",
+   "Trạng thái VanBan là cache với trang_thai_as_of, không lưu cứng.",
+   "Tất cả quy định liên quan 1 khái niệm bất kể câu chữ: Entity-[CANONICAL_LA]->CanonicalConcept cố định, rồi ngược lại qua LIEN_QUAN tới mọi QuyDinh."
+  ]
+ },
+ "validation_rules": [
+  {
+   "id": "C1",
+   "rule": "Mỗi QuyDinh phải có đúng 1 giá trị loai_quy_dinh VÀ đúng 1 giá trị hieu_luc_quy_pham (2 trục độc lập, không gộp chung như V4.1)."
+  },
+  {
+   "id": "C2",
+   "rule": "Mọi cạnh category='content' phải có evidence_chunk_id, evidence_quote, confidence. HanhVi/DieuKien/CheTai/KhaiNiem/CanonicalConcept không mang evidence riêng; QuyDinh và Entity giữ evidence của chính nó; CHUA_QUY_DINH không lặp lại evidence."
+  },
+  {
+   "id": "C3",
+   "rule": "THAM_CHIEU phải được phân giải (resolve id cụ thể) và có loai_tham_chieu trước khi tạo cạnh. Tham chiếu chưa resolve thì không tạo cạnh."
+  },
+  {
+   "id": "C4",
+   "rule": "valid_to phải là null hoặc >= valid_from. Cho phép valid_to = valid_from (khoảng rỗng = chưa từng có hiệu lực)."
+  },
+  {
+   "id": "C5",
+   "rule": "VanBan.trang_thai_hieu_luc là trường derived, tính bằng script tại thời điểm $t: (1) $t < ngay_hieu_luc -> chua_co_hieu_luc; (2) có THAY_THE hoặc BAI_BO tới chính VanBan còn hiệu lực tại $t -> het_hieu_luc_toan_bo; (3) có BAI_BO tới Provision con còn hiệu lực tại $t, chưa phủ hết -> het_hieu_luc_mot_phan; (4) SUA_DOI không đổi trạng thái; (5) nhiều BAI_BO thì lấy hợp các Provision bị bãi bỏ. Kết quả ghi kèm trang_thai_as_of."
+  },
+  {
+   "id": "C6",
+   "rule": "Cạnh DUOC_UY_QUYEN chỉ được trỏ tới VanBan có loai_van_ban trong {NghiDinh, ThongTu, QuyetDinh}."
+  },
+  {
+   "id": "C7",
+   "rule": "Mỗi Chunk phải có đúng 1 parent (Provision, cap thuộc dieu/khoan/diem) khớp với chunk_level. parent_id là nguồn chuẩn; CO_CHUNK sinh bằng code từ parent_id; hai bên phải khớp."
+  },
+  {
+   "id": "C8",
+   "rule": "Provision.cap của con phải đúng 1 bậc ngay dưới cap của cha theo thứ tự phan > chuong > muc > dieu > khoan > diem (bỏ qua các cấp optional không tồn tại trong văn bản đó)."
+  },
+  {
+   "id": "C9",
+   "rule": "SUA_DOI/BAI_BO nhắm vào Provision nhỏ nhất bị tác động, không được chỉ trỏ tới VanBan khi sửa một phần."
+  },
+  {
+   "id": "C10",
+   "rule": "Node CheTai phải có ít nhất một trong hinh_thuc/muc_phat_min/muc_phat_max."
+  },
+  {
+   "id": "C11",
+   "rule": "Mọi Entity bắt buộc có đúng 1 cạnh CANONICAL_LA tới CanonicalConcept trước khi được coi là ghi hợp lệ vào graph — không cho phép Entity 'mồ côi' canonical."
+  },
+  {
+   "id": "C12",
+   "rule": "id phải theo đúng id_pattern trong document_structure. id_pattern lấy từ dữ liệu chunk thật, không lấy từ sample."
+  },
+  {
+   "id": "C13",
+   "rule": "confidence < 0.5 -> extraction_status/review_status phải là 'pending_review', không được 'auto' hoặc 'verified'."
+  },
+  {
+   "id": "C14",
+   "rule": "Chiều dài vector embedding phải khớp neo4j.vector_index.dimension."
+  },
+  {
+   "id": "C15",
+   "rule": "Mọi VanBan phải có ít nhất 1 cạnh BAN_HANH_BOI tới một Entity có nhom_lon=ChuThe."
+  },
+  {
+   "id": "C16",
+   "rule": "Cạnh IS_A không được tạo vòng lặp (A IS_A B IS_A A). Domain/range phải cùng nhom_lon."
+  },
+  {
+   "id": "C17",
+   "rule": "Khi tạo QuyDinh mới qua PHIEN_BAN_MOI_CUA, QuyDinh cũ chỉ chuyển valid_to = ngày hiệu lực bản mới KHI bản mới đã có hiệu lực. Nếu bản mới chưa có hiệu lực, bản cũ vẫn giữ valid_from/valid_to như cũ."
+  },
+  {
+   "id": "C18",
+   "rule": "Mỗi Provision/Chunk có đúng 1 cha theo cardinality 1:N của quan hệ cấu trúc tương ứng."
+  },
+  {
+   "id": "C19",
+   "rule": "CO_CHUNK là 1:N từ Provision sang Chunk (nhiều phiên bản), mỗi Chunk đúng 1 parent."
+  },
+  {
+   "id": "C20",
+   "rule": "Nếu văn bản có cấp Phần thì mỗi Chương thuộc đúng 1 Phần; nếu không có Phần thì Chương thuộc thẳng VanBan. Cả hai trường hợp đều dùng CO_DON_VI hoặc CO_DON_VI_CON tùy đầu là VanBan hay Provision."
+  },
+  {
+   "id": "C21",
+   "rule": "MỚI. Trước khi tạo CanonicalConcept mới, pipeline phải chứng minh đã thử match_method exact/alias/synonym/fuzzy_string và không tìm được kết quả trên ngưỡng — tránh sinh trùng lặp canonical mà lẽ ra đã tồn tại."
+  },
+  {
+   "id": "C22",
+   "rule": "MỚI. 2 CanonicalConcept khác nhom_lon không được merge dù canonical_name trùng nhau (tránh nhầm 2 nghĩa khác nhau của cùng 1 từ, đúng đặc điểm đa nghĩa tiếng Việt)."
+  },
+  {
+   "id": "C23",
+   "rule": "MỚI. CanonicalConcept.surface_forms chỉ được thêm tự động từ Entity.ten_xuat_hien đã CANONICAL_LA tới nó; không nhập tay ngoài luồng resolve, để tránh registry lệch khỏi dữ liệu thực."
+  },
+  {
+   "id": "C24",
+   "rule": "MỚI. DieuKien.bieu_thuc nếu có thì mọi fact trong node predicate phải khớp fact_catalog (tên, kiểu, đơn vị) ở tầng runtime — fact chưa đăng ký giữ dạng node 'text', không tự tạo predicate mới."
+  }
+ ],
+ "neo4j": {
+  "constraints": [
+   "CREATE CONSTRAINT van_ban_id IF NOT EXISTS FOR (n:VanBan) REQUIRE n.document_id IS UNIQUE",
+   "CREATE CONSTRAINT provision_id IF NOT EXISTS FOR (n:Provision) REQUIRE n.provision_id IS UNIQUE",
+   "CREATE CONSTRAINT chunk_id IF NOT EXISTS FOR (n:Chunk) REQUIRE n.chunk_id IS UNIQUE",
+   "CREATE CONSTRAINT quydinh_id IF NOT EXISTS FOR (n:QuyDinh) REQUIRE n.quydinh_id IS UNIQUE",
+   "CREATE CONSTRAINT hanhvi_id IF NOT EXISTS FOR (n:HanhVi) REQUIRE n.hanhvi_id IS UNIQUE",
+   "CREATE CONSTRAINT dieukien_id IF NOT EXISTS FOR (n:DieuKien) REQUIRE n.dieukien_id IS UNIQUE",
+   "CREATE CONSTRAINT chetai_id IF NOT EXISTS FOR (n:CheTai) REQUIRE n.chetai_id IS UNIQUE",
+   "CREATE CONSTRAINT khainiem_id IF NOT EXISTS FOR (n:KhaiNiem) REQUIRE n.khainiem_id IS UNIQUE",
+   "CREATE CONSTRAINT entity_id IF NOT EXISTS FOR (n:Entity) REQUIRE n.entity_id IS UNIQUE",
+   "CREATE CONSTRAINT canonical_id IF NOT EXISTS FOR (n:CanonicalConcept) REQUIRE n.canonical_id IS UNIQUE"
+  ],
+  "vector_index": {
+   "name": "chunk_embedding_index",
+   "label": "Chunk",
+   "property": "embedding",
+   "dimension": 1024,
+   "similarity": "cosine"
+  },
+  "fulltext_index": [
+   "CREATE FULLTEXT INDEX chunk_fulltext IF NOT EXISTS FOR (n:Chunk) ON EACH [n.full_text, n.context_text]",
+   "CREATE FULLTEXT INDEX provision_fulltext IF NOT EXISTS FOR (n:Provision) ON EACH [n.ten, n.noi_dung_day_du]",
+   "CREATE FULLTEXT INDEX canonical_fulltext IF NOT EXISTS FOR (n:CanonicalConcept) ON EACH [n.canonical_name, n.synonyms, n.aliases, n.surface_forms]"
+  ],
+  "range_index": [
+   "CREATE RANGE INDEX van_ban_hieu_luc IF NOT EXISTS FOR (n:VanBan) ON (n.ngay_hieu_luc, n.ngay_het_hieu_luc)",
+   "CREATE RANGE INDEX quydinh_valid IF NOT EXISTS FOR (n:QuyDinh) ON (n.valid_from, n.valid_to)",
+   "CREATE RANGE INDEX van_ban_loai IF NOT EXISTS FOR (n:VanBan) ON (n.loai_van_ban, n.so_hieu)",
+   "CREATE RANGE INDEX entity_nhom IF NOT EXISTS FOR (n:Entity) ON (n.nhom_lon, n.loai_cu_the)",
+   "CREATE RANGE INDEX canonical_nhom IF NOT EXISTS FOR (n:CanonicalConcept) ON (n.nhom_lon, n.loai_cu_the)"
+  ],
+  "label_rule": "MỖI NODE CHỈ MANG ĐÚNG 1 NHÃN (label = tên class). KHÔNG multi-label theo class_hierarchy như V4.1 nữa — loại cụ thể (vd XeOTo) nằm ở Entity.loai_cu_the / CanonicalConcept.loai_cu_the, không ở nhãn Neo4j. Đây là thay đổi kỹ thuật cốt lõi giúp bỏ hẳn rule C8/C11 kiểu cũ và giảm 27 label xuống còn 2 (Entity, CanonicalConcept)."
+ },
+ "implementation_notes": {
+  "phan_chuong_fix": "Giữ nguyên nguyên tắc V4.1: nếu văn bản không có cấp Phần, Chương gắn thẳng vào VanBan qua CO_DON_VI; nếu có, Chương là con của Phần qua CO_DON_VI_CON.",
+  "migrate_tu_4_1": [
+   "Dữ liệu Phan/Chuong/Muc/Dieu/Khoan/Diem hiện có -> map thẳng vào Provision, gán cap tương ứng theo tên class cũ.",
+   "Dữ liệu 26 DomainEntity subclass hiện có -> map nhom_lon theo class_hierarchy gốc, loai_cu_the = tên class cũ (vd node cũ label XeOTo -> Entity{nhom_lon:'PhuongTien', loai_cu_the:'XeOTo'}), rồi chạy 1 lượt resolution_pipeline để tạo CanonicalConcept cho từng cụm (ten trùng nhau) và gắn CANONICAL_LA.",
+   "7 quan hệ AP_DUNG_CHO/LIEN_QUAN_PHUONG_TIEN/LIEN_QUAN_HA_TANG/YEU_CAU_GIAY_TO/SU_DUNG_THIET_BI/SU_DUNG_BAO_HIEU -> map thành LIEN_QUAN + vai_tro tương ứng trong lien_quan_vai_tro.",
+   "8 quan hệ cấu trúc cũ -> map thành CO_DON_VI (VanBan->Provision) hoặc CO_DON_VI_CON (Provision->Provision)."
+  ]
+ },
+ "changelog_v5_1": {
+  "so_luong_class": "58 class (V4.1) -> 10 class (V5.1). Giảm nhờ: gộp 6 class cấu trúc (Phan/Chuong/Muc/Dieu/Khoan/Diem) thành Provision; gộp 27 class DomainEntity/subclass thành Entity + CanonicalConcept (2 class).",
+  "so_luong_quan_he": "32 quan hệ (V4.1) -> 23 quan hệ (V5.1). Giảm nhờ: gộp 8 quan hệ cấu trúc thành 2; gộp 7 quan hệ LIEN_QUAN_* thành 1 quan hệ LIEN_QUAN có vai_tro. Thêm 3 quan hệ mới cho tầng canonicalization (CANONICAL_LA, IS_A, CHINH_THUC_HOA) bù lại.",
+  "diem_hoc_tu_v5": [
+   "Entity.kind (nhom_lon) thay vì class riêng cho từng loại thực thể.",
+   "Tách kind/modality của Rule (ở đây là QuyDinh.loai_quy_dinh/hieu_luc_quy_pham).",
+   "Cây biểu thức condition (all/any/not/predicate/text) áp cho DieuKien.bieu_thuc.",
+   "evidence.purpose (content/temporal/identity) áp cho QuyDinh.evidence_purpose.",
+   "Nguyên tắc mở rộng không sửa schema khi thêm khái niệm mới (mục 15 README V5) áp dụng cho taxonomy_registry."
+  ],
+  "diem_giu_nguyen_tu_v4_1_vi_da_manh": [
+   "Mô hình temporal dựa trên cạnh (CAN_CU/THAY_THE/SUA_DOI/BAI_BO/PHIEN_BAN_MOI_CUA/HOP_NHAT_TU) thay vì node Change riêng của V5 — v4.1 chi tiết và bám sát nghiệp vụ luật VN hơn.",
+   "Cấu trúc VanBan/Provision bám theo đúng thứ bậc Phần/Chương/Mục/Điều/Khoản/Điểm và id_pattern.",
+   "QuyDinh/HanhVi/DieuKien/CheTai/KhaiNiem là 5 class nội dung reify riêng biệt, không gộp về 1 Rule tổng quát như V5 — giữ vì đã có nhiều validation_rules và Neo4j index bám theo chúng, gộp thêm sẽ mất độ chi tiết cần cho RAG pháp luật giao thông.",
+   "Toàn bộ validation_rules C1-C20 gốc của V4.1 (chỉ sửa nhỏ theo class mới), giữ phong cách domain/range/cardinality tường minh trong relation_definitions."
+  ],
+  "diem_moi_hoan_toan": [
+   "Tầng canonicalization: Entity (mention, có evidence) -> CanonicalConcept (registry chuẩn hóa synonyms/aliases/surface_forms), theo đúng sơ đồ người dùng cung cấp, giải quyết đa nghĩa/đồng nghĩa tiếng Việt.",
+   "resolution_pipeline 7 bước và validation_rules C21-C24 cho tầng canonicalization."
+  ]
+ }
+}
