@@ -1,0 +1,46 @@
+{
+  "Van_ban_su_dung": "Nghị định 100/2019/NĐ-CP",
+  "Tong_so_chunks": 4,
+  "Danh_sach_chunks": [
+    {
+      "Index": 1,
+      "Noi_dung_chunk": "Điều 5. Xử phạt người điều khiển xe ô tô và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ\n3. Phạt tiền từ 800.000 đồng đến 1.000.000 đồng đối với người điều khiển xe thực hiện hành vi vi phạm: Điều khiển xe chạy quá tốc độ quy định từ 05 km/h đến dưới 10 km/h (Điểm a Khoản 3 Điều 5).",
+      "Header_boi_canh": "[Bối cảnh: Thuộc Điểm a Khoản 3 Điều 5 Nghị định 100/2019/NĐ-CP quy định xử phạt người điều khiển xe ô tô và các loại xe tương tự xe ô tô chạy quá tốc độ quy định từ 05 km/h đến dưới 10 km/h.]",
+      "Noi_dung_day_du": "[Bối cảnh: Thuộc Điểm a Khoản 3 Điều 5 Nghị định 100/2019/NĐ-CP quy định xử phạt người điều khiển xe ô tô và các loại xe tương tự xe ô tô chạy quá tốc độ quy định từ 05 km/h đến dưới 10 km/h.]\n\nĐiều 5. Xử phạt người điều khiển xe ô tô và các loại xe tương tự xe ô tô vi phạm quy tắc giao thông đường bộ\n3. Phạt tiền từ 800.000 đồng đến 1.000.000 đồng đối với người điều khiển xe thực hiện hành vi vi phạm: Điều khiển xe chạy quá tốc độ quy định từ 05 km/h đến dưới 10 km/h (Điểm a Khoản 3 Điều 5)."
+    },
+    {
+      "Index": 2,
+      "Noi_dung_chunk": "5. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với người điều khiển xe thực hiện hành vi vi phạm: Điều khiển xe chạy quá tốc độ quy định từ 10 km/h đến 20 km/h (Điểm i Khoản 5 Điều 5). Tước GPLX từ 01 tháng đến 03 tháng (Điểm b Khoản 11 Điều 5).",
+      "Header_boi_canh": "[Bối cảnh: Thuộc Điểm i Khoản 5 và Điểm b Khoản 11 Điều 5 Nghị định 100/2019/NĐ-CP quy định phạt tiền và tước giấy phép lái xe đối với người điều khiển xe ô tô chạy quá tốc độ quy định từ 10 km/h đến 20 km/h.]",
+      "Noi_dung_day_du": "[Bối cảnh: Thuộc Điểm i Khoản 5 và Điểm b Khoản 11 Điều 5 Nghị định 100/2019/NĐ-CP quy định phạt tiền và tước giấy phép lái xe đối với người điều khiển xe ô tô chạy quá tốc độ quy định từ 10 km/h đến 20 km/h.]\n\n5. Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng đối với người điều khiển xe thực hiện hành vi vi phạm: Điều khiển xe chạy quá tốc độ quy định từ 10 km/h đến 20 km/h (Điểm i Khoản 5 Điều 5). Tước GPLX từ 01 tháng đến 03 tháng (Điểm b Khoản 11 Điều 5)."
+    },
+    {
+      "Index": 3,
+      "Noi_dung_chunk": "6. Phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng đối với hành vi điều khiển xe chạy quá tốc độ quy định trên 20 km/h đến 35 km/h (Điểm a Khoản 6 Điều 5). Tước GPLX từ 02 tháng đến 04 tháng.",
+      "Header_boi_canh": "[Bối cảnh: Thuộc Điểm a Khoản 6 Điều 5 Nghị định 100/2019/NĐ-CP quy định phạt tiền và tước giấy phép lái xe đối với hành vi điều khiển xe ô tô chạy quá tốc độ quy định trên 20 km/h đến 35 km/h.]",
+      "Noi_dung_day_du": "[Bối cảnh: Thuộc Điểm a Khoản 6 Điều 5 Nghị định 100/2019/NĐ-CP quy định phạt tiền và tước giấy phép lái xe đối với hành vi điều khiển xe ô tô chạy quá tốc độ quy định trên 20 km/h đến 35 km/h.]\n\n6. Phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng đối với hành vi điều khiển xe chạy quá tốc độ quy định trên 20 km/h đến 35 km/h (Điểm a Khoản 6 Điều 5). Tước GPLX từ 02 tháng đến 04 tháng."
+    },
+    {
+      "Index": 4,
+      "Noi_dung_chunk": "7. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với hành vi điều khiển xe chạy quá tốc độ quy định trên 35 km/h (Điểm a Khoản 7 Điều 5). Tước GPLX từ 02 tháng đến 04 tháng.",
+      "Header_boi_canh": "[Bối cảnh: Thuộc Điểm a Khoản 7 Điều 5 Nghị định 100/2019/NĐ-CP quy định phạt tiền và tước giấy phép lái xe đối với hành vi điều khiển xe ô tô chạy quá tốc độ quy định trên 35 km/h.]",
+      "Noi_dung_day_du": "[Bối cảnh: Thuộc Điểm a Khoản 7 Điều 5 Nghị định 100/2019/NĐ-CP quy định phạt tiền và tước giấy phép lái xe đối với hành vi điều khiển xe ô tô chạy quá tốc độ quy định trên 35 km/h.]\n\n7. Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng đối với hành vi điều khiển xe chạy quá tốc độ quy định trên 35 km/h (Điểm a Khoản 7 Điều 5). Tước GPLX từ 02 tháng đến 04 tháng."
+    }
+  ],
+  "Thoi_gian_xu_ly": 22.2,
+  "Kiem_tra_chat_luong": {
+    "Van_ban_su_dung": "Nghị định 100/2019/NĐ-CP",
+    "Do_phu_van_ban": 1.0,
+    "Tat_ca_chunk_nguyen_van": true,
+    "Chunk_khong_nguyen_van": [],
+    "Dung_thu_tu": true,
+    "So_khoang_trong": 0,
+    "Khoang_trong": [],
+    "Chunk_ngan_nhat": 180,
+    "Chunk_dai_nhat": 303,
+    "Header_thieu_van_ban": [],
+    "Header_sai_van_ban": [],
+    "Dat_yeu_cau": true
+  },
+  "Embedding": "Chua tao - se bo sung o giai doan sau"
+}

@@ -1,0 +1,239 @@
+{
+  "nodes": [
+    {
+      "id": "doi_tuong_nguoi_di_bo",
+      "name": "Người đi bộ",
+      "class_label": "DoiTuongViPham"
+    },
+    {
+      "id": "doi_tuong_nguoi_dieu_khien_xe",
+      "name": "Người điều khiển phương tiện",
+      "class_label": "DoiTuongViPham"
+    },
+    {
+      "id": "doi_tuong_nguoi_tu_16_den_duoi_18_tuoi",
+      "name": "Người từ đủ 16 tuổi đến dưới 18 tuổi",
+      "class_label": "DoiTuongViPham"
+    },
+    {
+      "id": "phuong_tien_xe_dap_xe_dap_dien",
+      "name": "Xe đạp, xe đạp điện",
+      "class_label": "PhuongTien"
+    },
+    {
+      "id": "phuong_tien_xe_mo_to_tu_50cc_tro_len",
+      "name": "Xe mô tô có dung tích xi-lanh từ 50 cm3 trở lên",
+      "class_label": "PhuongTien"
+    },
+    {
+      "id": "hanh_vi_nguoi_di_bo_khong_di_dung_phan_duong",
+      "name": "Người đi bộ không đi đúng phần đường quy định",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_nguoi_di_bo_vuot_qua_dai_phan_cach",
+      "name": "Người đi bộ vượt qua dải phân cách",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_nguoi_di_bo_qua_duong_khong_dung_noi_quy_dinh",
+      "name": "Người đi bộ qua đường không đúng nơi quy định hoặc không bảo đảm an toàn",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_xe_dap_di_vao_duong_cam_khu_vuc_cam",
+      "name": "Điều khiển xe đạp, xe đạp điện đi vào đường cấm, khu vực cấm",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_xe_dap_di_nguoc_chieu_duong_mot_chieu",
+      "name": "Điều khiển xe đạp, xe đạp điện đi ngược chiều của đường một chiều",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_nguoi_tu_16_den_duoi_18_tuoi_dieu_khien_mo_to_tu_50cc",
+      "name": "Người từ đủ 16 tuổi đến dưới 18 tuổi điều khiển xe mô tô có dung tích xi-lanh từ 50 cm3 trở lên",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "loai_duong_duong_cam_khu_vuc_cam",
+      "name": "Đường cấm, khu vực cấm",
+      "class_label": "LoaiTuyenDuong"
+    },
+    {
+      "id": "loai_duong_duong_mot_chieu",
+      "name": "Đường một chiều",
+      "class_label": "LoaiTuyenDuong"
+    },
+    {
+      "id": "muc_dinh_luong_dung_tich_xi_lanh_tu_50cc",
+      "name": "Dung tích xi-lanh từ 50 cm3 trở lên",
+      "class_label": "MucDinhLuong"
+    },
+    {
+      "id": "muc_phat_100k_200k",
+      "name": "Phạt tiền từ 100.000 đồng đến 200.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "muc_phat_300k_400k",
+      "name": "Phạt tiền từ 300.000 đồng đến 400.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "muc_phat_400k_600k",
+      "name": "Phạt tiền từ 400.000 đồng đến 600.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "can_cu_khoan_1_dieu_9",
+      "name": "Khoản 1 Điều 9",
+      "class_label": "CanCuPhapLy"
+    },
+    {
+      "id": "can_cu_diem_c_khoan_2_dieu_8",
+      "name": "Điểm c Khoản 2 Điều 8",
+      "class_label": "CanCuPhapLy"
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "hanh_vi_nguoi_di_bo_khong_di_dung_phan_duong",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_di_bo",
+      "description": "Áp dụng đối với người đi bộ"
+    },
+    {
+      "source_id": "hanh_vi_nguoi_di_bo_khong_di_dung_phan_duong",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_100k_200k",
+      "description": "Mức phạt tiền áp dụng"
+    },
+    {
+      "source_id": "hanh_vi_nguoi_di_bo_khong_di_dung_phan_duong",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_khoan_1_dieu_9",
+      "description": "Căn cứ pháp lý quy định"
+    },
+    {
+      "source_id": "hanh_vi_nguoi_di_bo_vuot_qua_dai_phan_cach",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_di_bo",
+      "description": "Áp dụng đối với người đi bộ"
+    },
+    {
+      "source_id": "hanh_vi_nguoi_di_bo_vuot_qua_dai_phan_cach",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_100k_200k",
+      "description": "Mức phạt tiền áp dụng"
+    },
+    {
+      "source_id": "hanh_vi_nguoi_di_bo_vuot_qua_dai_phan_cach",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_khoan_1_dieu_9",
+      "description": "Căn cứ pháp lý quy định"
+    },
+    {
+      "source_id": "hanh_vi_nguoi_di_bo_qua_duong_khong_dung_noi_quy_dinh",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_di_bo",
+      "description": "Áp dụng đối với người đi bộ"
+    },
+    {
+      "source_id": "hanh_vi_nguoi_di_bo_qua_duong_khong_dung_noi_quy_dinh",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_100k_200k",
+      "description": "Mức phạt tiền áp dụng"
+    },
+    {
+      "source_id": "hanh_vi_nguoi_di_bo_qua_duong_khong_dung_noi_quy_dinh",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_khoan_1_dieu_9",
+      "description": "Căn cứ pháp lý quy định"
+    },
+    {
+      "source_id": "hanh_vi_xe_dap_di_vao_duong_cam_khu_vuc_cam",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_xe_dap_xe_dap_dien",
+      "description": "Áp dụng đối với phương tiện xe đạp, xe đạp điện"
+    },
+    {
+      "source_id": "hanh_vi_xe_dap_di_vao_duong_cam_khu_vuc_cam",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien_xe",
+      "description": "Áp dụng đối với người điều khiển phương tiện"
+    },
+    {
+      "source_id": "hanh_vi_xe_dap_di_vao_duong_cam_khu_vuc_cam",
+      "relation_type": "XAY_RA_TAI_DIA_DIEM",
+      "target_id": "loai_duong_duong_cam_khu_vuc_cam",
+      "description": "Địa điểm vi phạm xảy ra tại đường cấm, khu vực cấm"
+    },
+    {
+      "source_id": "hanh_vi_xe_dap_di_vao_duong_cam_khu_vuc_cam",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_300k_400k",
+      "description": "Mức phạt tiền áp dụng"
+    },
+    {
+      "source_id": "hanh_vi_xe_dap_di_vao_duong_cam_khu_vuc_cam",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_diem_c_khoan_2_dieu_8",
+      "description": "Căn cứ pháp lý quy định"
+    },
+    {
+      "source_id": "hanh_vi_xe_dap_di_nguoc_chieu_duong_mot_chieu",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_xe_dap_xe_dap_dien",
+      "description": "Áp dụng đối với phương tiện xe đạp, xe đạp điện"
+    },
+    {
+      "source_id": "hanh_vi_xe_dap_di_nguoc_chieu_duong_mot_chieu",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien_xe",
+      "description": "Áp dụng đối với người điều khiển phương tiện"
+    },
+    {
+      "source_id": "hanh_vi_xe_dap_di_nguoc_chieu_duong_mot_chieu",
+      "relation_type": "XAY_RA_TAI_DIA_DIEM",
+      "target_id": "loai_duong_duong_mot_chieu",
+      "description": "Địa điểm vi phạm xảy ra trên đường một chiều"
+    },
+    {
+      "source_id": "hanh_vi_xe_dap_di_nguoc_chieu_duong_mot_chieu",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_300k_400k",
+      "description": "Mức phạt tiền áp dụng"
+    },
+    {
+      "source_id": "hanh_vi_xe_dap_di_nguoc_chieu_duong_mot_chieu",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_diem_c_khoan_2_dieu_8",
+      "description": "Căn cứ pháp lý quy định"
+    },
+    {
+      "source_id": "hanh_vi_nguoi_tu_16_den_duoi_18_tuoi_dieu_khien_mo_to_tu_50cc",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_tu_16_den_duoi_18_tuoi",
+      "description": "Áp dụng đối với người từ đủ 16 tuổi đến dưới 18 tuổi"
+    },
+    {
+      "source_id": "hanh_vi_nguoi_tu_16_den_duoi_18_tuoi_dieu_khien_mo_to_tu_50cc",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_xe_mo_to_tu_50cc_tro_len",
+      "description": "Áp dụng đối với xe mô tô có dung tích từ 50 cm3 trở lên"
+    },
+    {
+      "source_id": "hanh_vi_nguoi_tu_16_den_duoi_18_tuoi_dieu_khien_mo_to_tu_50cc",
+      "relation_type": "CO_MUC_DINH_LUONG",
+      "target_id": "muc_dinh_luong_dung_tich_xi_lanh_tu_50cc",
+      "description": "Ngưỡng định lượng dung tích xi-lanh phương tiện"
+    },
+    {
+      "source_id": "hanh_vi_nguoi_tu_16_den_duoi_18_tuoi_dieu_khien_mo_to_tu_50cc",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_400k_600k",
+      "description": "Mức phạt tiền áp dụng"
+    }
+  ]
+}

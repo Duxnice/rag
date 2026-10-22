@@ -1,0 +1,141 @@
+{
+  "nodes": [
+    {
+      "id": "chien_si_csgt_thi_hanh_cong_vu",
+      "name": "Chiến sĩ Cảnh sát giao thông đang thi hành công vụ",
+      "class_label": "ThamQuyenXuPhat"
+    },
+    {
+      "id": "truong_cong_an_cap_xa",
+      "name": "Trưởng Công an cấp xã",
+      "class_label": "ThamQuyenXuPhat"
+    },
+    {
+      "id": "doi_truong_doi_csgt",
+      "name": "Đội trưởng Đội Cảnh sát giao thông",
+      "class_label": "ThamQuyenXuPhat"
+    },
+    {
+      "id": "truong_cong_an_cap_huyen",
+      "name": "Trưởng Công an cấp huyện",
+      "class_label": "ThamQuyenXuPhat"
+    },
+    {
+      "id": "truong_phong_csgt",
+      "name": "Trưởng phòng Cảnh sát giao thông",
+      "class_label": "ThamQuyenXuPhat"
+    },
+    {
+      "id": "chu_tich_ubnd_cap_tinh",
+      "name": "Chủ tịch Ủy ban nhân dân cấp tỉnh",
+      "class_label": "ThamQuyenXuPhat"
+    },
+    {
+      "id": "phat_tien_den_500k_ca_nhan",
+      "name": "Phạt tiền đến 500.000 đồng đối với cá nhân",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "phat_tien_den_1m_to_chuc",
+      "name": "Phạt tiền đến 1.000.000 đồng đối với tổ chức",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "phat_tien_den_2m5_ca_nhan",
+      "name": "Phạt tiền đến 2.500.000 đồng đối với cá nhân",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "phat_tien_den_5m_to_chuc",
+      "name": "Phạt tiền đến 5.000.000 đồng đối với tổ chức",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "phat_tien_den_15m",
+      "name": "Phạt tiền đến 15.000.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "phat_tien_den_75m_ca_nhan",
+      "name": "Phạt tiền đến 75.000.000 đồng đối với cá nhân",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "phat_tien_den_150m_to_chuc",
+      "name": "Phạt tiền đến 150.000.000 đồng đối với tổ chức",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "tuoc_quyen_su_dung_gplx_co_thoi_han",
+      "name": "Tước quyền sử dụng giấy phép lái xe có thời hạn",
+      "class_label": "HinhPhatBoSung"
+    },
+    {
+      "id": "tam_giu_phuong_tien_vi_pham",
+      "name": "Tạm giữ phương tiện vi phạm",
+      "class_label": "BienPhapNganChan"
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "phat_tien_den_500k_ca_nhan",
+      "relation_type": "THUOC_THAM_QUYEN",
+      "target_id": "chien_si_csgt_thi_hanh_cong_vu",
+      "description": "Chiến sĩ CSGT đang thi hành công vụ có thẩm quyền phạt tiền đến 500.000 đồng đối với cá nhân"
+    },
+    {
+      "source_id": "phat_tien_den_1m_to_chuc",
+      "relation_type": "THUOC_THAM_QUYEN",
+      "target_id": "chien_si_csgt_thi_hanh_cong_vu",
+      "description": "Chiến sĩ CSGT đang thi hành công vụ có thẩm quyền phạt tiền đến 1.000.000 đồng đối với tổ chức"
+    },
+    {
+      "source_id": "phat_tien_den_2m5_ca_nhan",
+      "relation_type": "THUOC_THAM_QUYEN",
+      "target_id": "truong_cong_an_cap_xa",
+      "description": "Trưởng Công an cấp xã có thẩm quyền phạt tiền đến 2.500.000 đồng đối với cá nhân"
+    },
+    {
+      "source_id": "phat_tien_den_2m5_ca_nhan",
+      "relation_type": "THUOC_THAM_QUYEN",
+      "target_id": "doi_truong_doi_csgt",
+      "description": "Đội trưởng Đội Cảnh sát giao thông có thẩm quyền phạt tiền đến 2.500.000 đồng đối với cá nhân"
+    },
+    {
+      "source_id": "phat_tien_den_5m_to_chuc",
+      "relation_type": "THUOC_THAM_QUYEN",
+      "target_id": "truong_cong_an_cap_xa",
+      "description": "Trưởng Công an cấp xã có thẩm quyền phạt tiền đến 5.000.000 đồng đối với tổ chức"
+    },
+    {
+      "source_id": "phat_tien_den_5m_to_chuc",
+      "relation_type": "THUOC_THAM_QUYEN",
+      "target_id": "doi_truong_doi_csgt",
+      "description": "Đội trưởng Đội Cảnh sát giao thông có thẩm quyền phạt tiền đến 5.000.000 đồng đối với tổ chức"
+    },
+    {
+      "source_id": "phat_tien_den_15m",
+      "relation_type": "THUOC_THAM_QUYEN",
+      "target_id": "truong_cong_an_cap_huyen",
+      "description": "Trưởng Công an cấp huyện có thẩm quyền phạt tiền đến 15.000.000 đồng"
+    },
+    {
+      "source_id": "phat_tien_den_15m",
+      "relation_type": "THUOC_THAM_QUYEN",
+      "target_id": "truong_phong_csgt",
+      "description": "Trưởng phòng Cảnh sát giao thông có thẩm quyền phạt tiền đến 15.000.000 đồng"
+    },
+    {
+      "source_id": "phat_tien_den_75m_ca_nhan",
+      "relation_type": "THUOC_THAM_QUYEN",
+      "target_id": "chu_tich_ubnd_cap_tinh",
+      "description": "Chủ tịch UBND cấp tỉnh có thẩm quyền phạt tiền đến 75.000.000 đồng đối với cá nhân"
+    },
+    {
+      "source_id": "phat_tien_den_150m_to_chuc",
+      "relation_type": "THUOC_THAM_QUYEN",
+      "target_id": "chu_tich_ubnd_cap_tinh",
+      "description": "Chủ tịch UBND cấp tỉnh có thẩm quyền phạt tiền đến 150.000.000 đồng đối với tổ chức"
+    }
+  ]
+}

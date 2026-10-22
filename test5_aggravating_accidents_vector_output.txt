@@ -1,0 +1,34 @@
+{
+  "Van_ban_su_dung": "Nghị định 100/2019/NĐ-CP",
+  "Tong_so_chunks": 2,
+  "Danh_sach_chunks": [
+    {
+      "Index": 1,
+      "Noi_dung_chunk": "Điều 5 & Điều 6. Xử phạt vi phạm giao thông có tình tiết tăng nặng\nPhạt tiền từ 16.000.000 đồng đến 18.000.000 đồng đối với người điều khiển xe ô tô thực hiện hành vi vi phạm: Điều khiển xe chạy quá tốc độ quy định gây tai nạn giao thông; đi không đúng phần đường hoặc làn đường quy định gây tai nạn giao thông (Điểm a Khoản 7 Điều 5). Tước quyền sử dụng Giấy phép lái xe từ 02 tháng đến 04 tháng.",
+      "Header_boi_canh": "[Bối cảnh: Thuộc Điểm a Khoản 7 Điều 5 Nghị định 100/2019/NĐ-CP quy định xử phạt người điều khiển xe ô tô chạy quá tốc độ hoặc đi không đúng phần đường, làn đường quy định gây tai nạn giao thông.]",
+      "Noi_dung_day_du": "[Bối cảnh: Thuộc Điểm a Khoản 7 Điều 5 Nghị định 100/2019/NĐ-CP quy định xử phạt người điều khiển xe ô tô chạy quá tốc độ hoặc đi không đúng phần đường, làn đường quy định gây tai nạn giao thông.]\n\nĐiều 5 & Điều 6. Xử phạt vi phạm giao thông có tình tiết tăng nặng\nPhạt tiền từ 16.000.000 đồng đến 18.000.000 đồng đối với người điều khiển xe ô tô thực hiện hành vi vi phạm: Điều khiển xe chạy quá tốc độ quy định gây tai nạn giao thông; đi không đúng phần đường hoặc làn đường quy định gây tai nạn giao thông (Điểm a Khoản 7 Điều 5). Tước quyền sử dụng Giấy phép lái xe từ 02 tháng đến 04 tháng."
+    },
+    {
+      "Index": 2,
+      "Noi_dung_chunk": "Phạt tiền từ 16.000.000 đồng đến 18.000.000 đồng đối với người điều khiển xe ô tô gây tai nạn giao thông không dừng lại, không giữ nguyên hiện trường, bỏ chạy không cấp cứu người bị nạn (Điểm b Khoản 8 Điều 5). Tước GPLX từ 05 tháng đến 07 tháng.",
+      "Header_boi_canh": "[Bối cảnh: Thuộc Điểm b Khoản 8 Điều 5 Nghị định 100/2019/NĐ-CP quy định xử phạt người điều khiển xe ô tô gây tai nạn giao thông không dừng lại, không giữ nguyên hiện trường, bỏ chạy không cấp cứu người bị nạn.]",
+      "Noi_dung_day_du": "[Bối cảnh: Thuộc Điểm b Khoản 8 Điều 5 Nghị định 100/2019/NĐ-CP quy định xử phạt người điều khiển xe ô tô gây tai nạn giao thông không dừng lại, không giữ nguyên hiện trường, bỏ chạy không cấp cứu người bị nạn.]\n\nPhạt tiền từ 16.000.000 đồng đến 18.000.000 đồng đối với người điều khiển xe ô tô gây tai nạn giao thông không dừng lại, không giữ nguyên hiện trường, bỏ chạy không cấp cứu người bị nạn (Điểm b Khoản 8 Điều 5). Tước GPLX từ 05 tháng đến 07 tháng."
+    }
+  ],
+  "Thoi_gian_xu_ly": 14.73,
+  "Kiem_tra_chat_luong": {
+    "Van_ban_su_dung": "Nghị định 100/2019/NĐ-CP",
+    "Do_phu_van_ban": 1.0,
+    "Tat_ca_chunk_nguyen_van": true,
+    "Chunk_khong_nguyen_van": [],
+    "Dung_thu_tu": true,
+    "So_khoang_trong": 0,
+    "Khoang_trong": [],
+    "Chunk_ngan_nhat": 246,
+    "Chunk_dai_nhat": 397,
+    "Header_thieu_van_ban": [],
+    "Header_sai_van_ban": [],
+    "Dat_yeu_cau": true
+  },
+  "Embedding": "Chua tao - se bo sung o giai doan sau"
+}

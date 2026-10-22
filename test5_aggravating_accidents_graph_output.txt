@@ -1,0 +1,174 @@
+{
+  "nodes": [
+    {
+      "id": "phuong_tien_o_to",
+      "name": "Xe ô tô",
+      "class_label": "PhuongTien"
+    },
+    {
+      "id": "doi_tuong_nguoi_dieu_khien",
+      "name": "Người điều khiển xe ô tô",
+      "class_label": "DoiTuongViPham"
+    },
+    {
+      "id": "hanh_vi_chay_qua_toc_do_gay_tngt",
+      "name": "Điều khiển xe chạy quá tốc độ quy định gây tai nạn giao thông",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_di_sai_lan_duong_gay_tngt",
+      "name": "Đi không đúng phần đường hoặc làn đường quy định gây tai nạn giao thông",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_bo_chay_sau_khi_gay_tngt",
+      "name": "Gây tai nạn giao thông không dừng lại, không giữ nguyên hiện trường, bỏ chạy không cấp cứu người bị nạn",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "tinh_tiet_gay_tai_nan_giao_thong",
+      "name": "Gây tai nạn giao thông",
+      "class_label": "TinhTietTangNang"
+    },
+    {
+      "id": "tinh_tiet_bo_chay_khong_cuu_nan",
+      "name": "Không dừng lại, không giữ nguyên hiện trường, bỏ chạy không cấp cứu người bị nạn",
+      "class_label": "TinhTietTangNang"
+    },
+    {
+      "id": "muc_phat_16m_18m",
+      "name": "Phạt tiền từ 16.000.000 đồng đến 18.000.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "hpbs_tuoc_gplx_2_den_4_thang",
+      "name": "Tước quyền sử dụng Giấy phép lái xe từ 02 tháng đến 04 tháng",
+      "class_label": "HinhPhatBoSung"
+    },
+    {
+      "id": "hpbs_tuoc_gplx_5_den_7_thang",
+      "name": "Tước quyền sử dụng Giấy phép lái xe từ 05 tháng đến 07 tháng",
+      "class_label": "HinhPhatBoSung"
+    },
+    {
+      "id": "can_cu_diem_a_khoan_7_dieu_5",
+      "name": "Điểm a Khoản 7 Điều 5",
+      "class_label": "CanCuPhapLy"
+    },
+    {
+      "id": "can_cu_diem_b_khoan_8_dieu_5",
+      "name": "Điểm b Khoản 8 Điều 5",
+      "class_label": "CanCuPhapLy"
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "hanh_vi_chay_qua_toc_do_gay_tngt",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_o_to",
+      "description": "Áp dụng đối với phương tiện ô tô"
+    },
+    {
+      "source_id": "hanh_vi_chay_qua_toc_do_gay_tngt",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng đối với người điều khiển phương tiện"
+    },
+    {
+      "source_id": "hanh_vi_chay_qua_toc_do_gay_tngt",
+      "relation_type": "CO_TINH_TIET_TANG_NANG",
+      "target_id": "tinh_tiet_gay_tai_nan_giao_thong",
+      "description": "Hành vi có tình tiết tăng nặng gây tai nạn giao thông"
+    },
+    {
+      "source_id": "hanh_vi_chay_qua_toc_do_gay_tngt",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_16m_18m",
+      "description": "Xử phạt tiền từ 16.000.000 đến 18.000.000 đồng"
+    },
+    {
+      "source_id": "hanh_vi_chay_qua_toc_do_gay_tngt",
+      "relation_type": "BI_TIPC_GPLX_BOSUNG",
+      "target_id": "hpbs_tuoc_gplx_2_den_4_thang",
+      "description": "Hình phạt bổ sung tước Giấy phép lái xe từ 02 đến 04 tháng"
+    },
+    {
+      "source_id": "hanh_vi_chay_qua_toc_do_gay_tngt",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_diem_a_khoan_7_dieu_5",
+      "description": "Quy định tại Điểm a Khoản 7 Điều 5"
+    },
+    {
+      "source_id": "hanh_vi_di_sai_lan_duong_gay_tngt",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_o_to",
+      "description": "Áp dụng đối với phương tiện ô tô"
+    },
+    {
+      "source_id": "hanh_vi_di_sai_lan_duong_gay_tngt",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng đối với người điều khiển phương tiện"
+    },
+    {
+      "source_id": "hanh_vi_di_sai_lan_duong_gay_tngt",
+      "relation_type": "CO_TINH_TIET_TANG_NANG",
+      "target_id": "tinh_tiet_gay_tai_nan_giao_thong",
+      "description": "Hành vi có tình tiết tăng nặng gây tai nạn giao thông"
+    },
+    {
+      "source_id": "hanh_vi_di_sai_lan_duong_gay_tngt",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_16m_18m",
+      "description": "Xử phạt tiền từ 16.000.000 đến 18.000.000 đồng"
+    },
+    {
+      "source_id": "hanh_vi_di_sai_lan_duong_gay_tngt",
+      "relation_type": "BI_TIPC_GPLX_BOSUNG",
+      "target_id": "hpbs_tuoc_gplx_2_den_4_thang",
+      "description": "Hình phạt bổ sung tước Giấy phép lái xe từ 02 đến 04 tháng"
+    },
+    {
+      "source_id": "hanh_vi_di_sai_lan_duong_gay_tngt",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_diem_a_khoan_7_dieu_5",
+      "description": "Quy định tại Điểm a Khoản 7 Điều 5"
+    },
+    {
+      "source_id": "hanh_vi_bo_chay_sau_khi_gay_tngt",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_o_to",
+      "description": "Áp dụng đối với phương tiện ô tô"
+    },
+    {
+      "source_id": "hanh_vi_bo_chay_sau_khi_gay_tngt",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng đối với người điều khiển phương tiện"
+    },
+    {
+      "source_id": "hanh_vi_bo_chay_sau_khi_gay_tngt",
+      "relation_type": "CO_TINH_TIET_TANG_NANG",
+      "target_id": "tinh_tiet_bo_chay_khong_cuu_nan",
+      "description": "Tình tiết bỏ chạy, không giữ nguyên hiện trường, không cấp cứu người bị nạn"
+    },
+    {
+      "source_id": "hanh_vi_bo_chay_sau_khi_gay_tngt",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_16m_18m",
+      "description": "Xử phạt tiền từ 16.000.000 đến 18.000.000 đồng"
+    },
+    {
+      "source_id": "hanh_vi_bo_chay_sau_khi_gay_tngt",
+      "relation_type": "BI_TIPC_GPLX_BOSUNG",
+      "target_id": "hpbs_tuoc_gplx_5_den_7_thang",
+      "description": "Hình phạt bổ sung tước Giấy phép lái xe từ 05 đến 07 tháng"
+    },
+    {
+      "source_id": "hanh_vi_bo_chay_sau_khi_gay_tngt",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_diem_b_khoan_8_dieu_5",
+      "description": "Quy định tại Điểm b Khoản 8 Điều 5"
+    }
+  ]
+}

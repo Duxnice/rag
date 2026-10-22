@@ -1,0 +1,243 @@
+{
+  "nodes": [
+    {
+      "id": "phuong_tien_xe_mo_to",
+      "name": "Xe mô tô",
+      "class_label": "PhuongTien"
+    },
+    {
+      "id": "doi_tuong_nguoi_dieu_khien",
+      "name": "Người điều khiển phương tiện",
+      "class_label": "DoiTuongViPham"
+    },
+    {
+      "id": "hanh_vi_nong_do_con_muc_1_mo_to",
+      "name": "Điều khiển xe mô tô trên đường mà trong máu hoặc khí thở có nồng độ cồn chưa vượt quá 50 miligam/100 mililít máu hoặc chưa vượt quá 0,25 miligam/1 lít khí thở",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "dinh_luong_con_muc_1",
+      "name": "Chưa vượt quá 50 miligam/100 mililít máu hoặc chưa vượt quá 0,25 miligam/1 lít khí thở",
+      "class_label": "MucDinhLuong"
+    },
+    {
+      "id": "muc_phat_2m_3m",
+      "name": "Phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "can_cu_diem_c_khoan_6_dieu_6",
+      "name": "Điểm c Khoản 6 Điều 6",
+      "class_label": "CanCuPhapLy"
+    },
+    {
+      "id": "tuoc_gplx_10_12_thang",
+      "name": "Tước quyền sử dụng Giấy phép lái xe từ 10 tháng đến 12 tháng",
+      "class_label": "HinhPhatBoSung"
+    },
+    {
+      "id": "tru_4_diem_gplx",
+      "name": "Trừ 4 điểm Giấy phép lái xe",
+      "class_label": "TruDiemGPLX"
+    },
+    {
+      "id": "hanh_vi_nong_do_con_muc_2_mo_to",
+      "name": "Điều khiển xe mô tô trên đường mà trong máu hoặc khí thở có nồng độ cồn vượt quá 50 miligam đến 80 miligam/100 mililít máu hoặc vượt quá 0,25 miligam đến 0,4 miligam/1 lít khí thở",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "dinh_luong_con_muc_2",
+      "name": "Vượt quá 50 miligam đến 80 miligam/100 mililít máu hoặc vượt quá 0,25 miligam đến 0,4 miligam/1 lít khí thở",
+      "class_label": "MucDinhLuong"
+    },
+    {
+      "id": "muc_phat_4m_5m",
+      "name": "Phạt tiền từ 4.000.000 đồng đến 5.000.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "can_cu_diem_c_khoan_7_dieu_6",
+      "name": "Điểm c Khoản 7 Điều 6",
+      "class_label": "CanCuPhapLy"
+    },
+    {
+      "id": "tuoc_gplx_16_18_thang",
+      "name": "Tước quyền sử dụng Giấy phép lái xe từ 16 tháng đến 18 tháng",
+      "class_label": "HinhPhatBoSung"
+    },
+    {
+      "id": "tru_10_diem_gplx",
+      "name": "Trừ 10 điểm Giấy phép lái xe",
+      "class_label": "TruDiemGPLX"
+    },
+    {
+      "id": "hanh_vi_nong_do_con_muc_3_mo_to",
+      "name": "Điều khiển xe mô tô trên đường mà trong máu hoặc khí thở có nồng độ cồn vượt quá 80 miligam/100 mililít máu hoặc vượt quá 0,4 miligam/1 lít khí thở",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "dinh_luong_con_muc_3",
+      "name": "Vượt quá 80 miligam/100 mililít máu hoặc vượt quá 0,4 miligam/1 lít khí thở",
+      "class_label": "MucDinhLuong"
+    },
+    {
+      "id": "muc_phat_6m_8m",
+      "name": "Phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "can_cu_diem_e_khoan_8_dieu_6",
+      "name": "Điểm e Khoản 8 Điều 6",
+      "class_label": "CanCuPhapLy"
+    },
+    {
+      "id": "tuoc_gplx_22_24_thang",
+      "name": "Tước quyền sử dụng Giấy phép lái xe từ 22 tháng đến 24 tháng",
+      "class_label": "HinhPhatBoSung"
+    },
+    {
+      "id": "tru_12_diem_gplx",
+      "name": "Trừ 12 điểm Giấy phép lái xe",
+      "class_label": "TruDiemGPLX"
+    },
+    {
+      "id": "tam_giu_phuong_tien_den_07_ngay",
+      "name": "Tạm giữ phương tiện đến 07 ngày",
+      "class_label": "BienPhapNganChan"
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_1_mo_to",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_xe_mo_to",
+      "description": "Áp dụng đối với phương tiện là xe mô tô"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_1_mo_to",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng đối với người điều khiển xe"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_1_mo_to",
+      "relation_type": "CO_MUC_DINH_LUONG",
+      "target_id": "dinh_luong_con_muc_1",
+      "description": "Ngưỡng nồng độ cồn vi phạm mức 1"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_1_mo_to",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_2m_3m",
+      "description": "Bị xử phạt tiền từ 2.000.000 đồng đến 3.000.000 đồng"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_1_mo_to",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_diem_c_khoan_6_dieu_6",
+      "description": "Căn cứ pháp lý quy định hành vi"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_1_mo_to",
+      "relation_type": "BI_TIPC_GPLX_BOSUNG",
+      "target_id": "tuoc_gplx_10_12_thang",
+      "description": "Hình phạt bổ sung tước quyền sử dụng GPLX"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_1_mo_to",
+      "relation_type": "BI_TRU_DIEM",
+      "target_id": "tru_4_diem_gplx",
+      "description": "Bị trừ điểm trên Giấy phép lái xe"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_2_mo_to",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_xe_mo_to",
+      "description": "Áp dụng đối với phương tiện là xe mô tô"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_2_mo_to",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng đối với người điều khiển xe"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_2_mo_to",
+      "relation_type": "CO_MUC_DINH_LUONG",
+      "target_id": "dinh_luong_con_muc_2",
+      "description": "Ngưỡng nồng độ cồn vi phạm mức 2"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_2_mo_to",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_4m_5m",
+      "description": "Bị xử phạt tiền từ 4.000.000 đồng đến 5.000.000 đồng"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_2_mo_to",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_diem_c_khoan_7_dieu_6",
+      "description": "Căn cứ pháp lý quy định hành vi"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_2_mo_to",
+      "relation_type": "BI_TIPC_GPLX_BOSUNG",
+      "target_id": "tuoc_gplx_16_18_thang",
+      "description": "Hình phạt bổ sung tước quyền sử dụng GPLX"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_2_mo_to",
+      "relation_type": "BI_TRU_DIEM",
+      "target_id": "tru_10_diem_gplx",
+      "description": "Bị trừ điểm trên Giấy phép lái xe"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_3_mo_to",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_xe_mo_to",
+      "description": "Áp dụng đối với phương tiện là xe mô tô"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_3_mo_to",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng đối với người điều khiển xe"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_3_mo_to",
+      "relation_type": "CO_MUC_DINH_LUONG",
+      "target_id": "dinh_luong_con_muc_3",
+      "description": "Ngưỡng nồng độ cồn vi phạm mức 3"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_3_mo_to",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_6m_8m",
+      "description": "Bị xử phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_3_mo_to",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_diem_e_khoan_8_dieu_6",
+      "description": "Căn cứ pháp lý quy định hành vi"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_3_mo_to",
+      "relation_type": "BI_TIPC_GPLX_BOSUNG",
+      "target_id": "tuoc_gplx_22_24_thang",
+      "description": "Hình phạt bổ sung tước quyền sử dụng GPLX"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_3_mo_to",
+      "relation_type": "BI_TRU_DIEM",
+      "target_id": "tru_12_diem_gplx",
+      "description": "Bị trừ điểm trên Giấy phép lái xe"
+    },
+    {
+      "source_id": "hanh_vi_nong_do_con_muc_3_mo_to",
+      "relation_type": "AP_DUNG_BIEN_PHAP_NGAN_CHAN",
+      "target_id": "tam_giu_phuong_tien_den_07_ngay",
+      "description": "Biện pháp ngăn chặn tạm giữ phương tiện"
+    }
+  ]
+}

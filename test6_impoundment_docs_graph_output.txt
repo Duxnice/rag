@@ -1,0 +1,94 @@
+{
+  "nodes": [
+    {
+      "id": "hanh_vi_vi_pham_nong_do_con",
+      "name": "Vi phạm nồng độ cồn",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_chay_qua_toc_do_gay_tai_nan",
+      "name": "Chạy quá tốc độ gây tai nạn giao thông",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_dieu_khien_xe_khong_co_giay_dang_ky_xe",
+      "name": "Điều khiển xe không có Giấy đăng ký xe",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "doi_tuong_nguoi_dieu_khien",
+      "name": "Người điều khiển phương tiện",
+      "class_label": "DoiTuongViPham"
+    },
+    {
+      "id": "tinh_tiet_gay_tai_nan_giao_thong",
+      "name": "Gây tai nạn giao thông",
+      "class_label": "TinhTietTangNang"
+    },
+    {
+      "id": "bien_phap_tam_giu_phuong_tien_den_07_ngay",
+      "name": "Tạm giữ phương tiện đến 07 ngày trước khi ra quyết định xử phạt",
+      "class_label": "BienPhapNganChan"
+    },
+    {
+      "id": "bien_phap_tam_giu_giay_to_lien_quan",
+      "name": "Tạm giữ giấy tờ (GPLX, Giấy đăng ký xe, Giấy chứng nhận kiểm định an toàn kỹ thuật và bảo vệ môi trường)",
+      "class_label": "BienPhapNganChan"
+    },
+    {
+      "id": "can_cu_dieu_82",
+      "name": "Điều 82 Tạm giữ phương tiện, giấy tờ có liên quan đến người điều khiển và phương tiện vi phạm",
+      "class_label": "CanCuPhapLy"
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "hanh_vi_vi_pham_nong_do_con",
+      "relation_type": "AP_DUNG_BIEN_PHAP_NGAN_CHAN",
+      "target_id": "bien_phap_tam_giu_phuong_tien_den_07_ngay",
+      "description": "Áp dụng biện pháp tạm giữ phương tiện đến 07 ngày đối với vi phạm nồng độ cồn"
+    },
+    {
+      "source_id": "hanh_vi_chay_qua_toc_do_gay_tai_nan",
+      "relation_type": "AP_DUNG_BIEN_PHAP_NGAN_CHAN",
+      "target_id": "bien_phap_tam_giu_phuong_tien_den_07_ngay",
+      "description": "Áp dụng biện pháp tạm giữ phương tiện đến 07 ngày đối với hành vi chạy quá tốc độ gây tai nạn"
+    },
+    {
+      "source_id": "hanh_vi_dieu_khien_xe_khong_co_giay_dang_ky_xe",
+      "relation_type": "AP_DUNG_BIEN_PHAP_NGAN_CHAN",
+      "target_id": "bien_phap_tam_giu_phuong_tien_den_07_ngay",
+      "description": "Áp dụng biện pháp tạm giữ phương tiện đến 07 ngày đối với hành vi không có Giấy đăng ký xe"
+    },
+    {
+      "source_id": "hanh_vi_chay_qua_toc_do_gay_tai_nan",
+      "relation_type": "CO_TINH_TIET_TANG_NANG",
+      "target_id": "tinh_tiet_gay_tai_nan_giao_thong",
+      "description": "Hành vi có tình tiết gây tai nạn giao thông"
+    },
+    {
+      "source_id": "hanh_vi_dieu_khien_xe_khong_co_giay_dang_ky_xe",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng đối với người điều khiển phương tiện"
+    },
+    {
+      "source_id": "hanh_vi_vi_pham_nong_do_con",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_dieu_82",
+      "description": "Quy định biện pháp ngăn chặn tại Điều 82"
+    },
+    {
+      "source_id": "hanh_vi_chay_qua_toc_do_gay_tai_nan",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_dieu_82",
+      "description": "Quy định biện pháp ngăn chặn tại Điều 82"
+    },
+    {
+      "source_id": "hanh_vi_dieu_khien_xe_khong_co_giay_dang_ky_xe",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_dieu_82",
+      "description": "Quy định biện pháp ngăn chặn tại Điều 82"
+    }
+  ]
+}

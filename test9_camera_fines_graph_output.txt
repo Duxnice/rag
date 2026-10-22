@@ -1,0 +1,54 @@
+{
+  "nodes": [
+    {
+      "id": "hanh_vi_vi_pham_phat_nguoi",
+      "name": "Hành vi vi phạm phát hiện qua phương tiện, thiết bị kỹ thuật nghiệp vụ (phạt nguội)",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "doi_tuong_chu_phuong_tien",
+      "name": "Chủ phương tiện",
+      "class_label": "DoiTuongViPham"
+    },
+    {
+      "id": "doi_tuong_nguoi_dieu_khien",
+      "name": "Người điều khiển phương tiện",
+      "class_label": "DoiTuongViPham"
+    },
+    {
+      "id": "can_cu_dieu_80",
+      "name": "Điều 80 Xử phạt vi phạm hành chính qua hệ thống thiết bị kỹ thuật nghiệp vụ",
+      "class_label": "CanCuPhapLy"
+    },
+    {
+      "id": "hinh_thuc_xu_ly_phat_nguoi",
+      "name": "Phạt nguội qua kết quả thu được từ Camera giám sát giao thông, thiết bị đo tốc độ ghi hình",
+      "class_label": "HinhThucXuLy"
+    },
+    {
+      "id": "tham_quyen_cong_an",
+      "name": "Người có thẩm quyền xử phạt thuộc cơ quan Công an",
+      "class_label": "ThamQuyenXuPhat"
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "hanh_vi_vi_pham_phat_nguoi",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_chu_phuong_tien",
+      "description": "Áp dụng đối với chủ phương tiện để xử lý phạt nguội theo thông báo"
+    },
+    {
+      "source_id": "hanh_vi_vi_pham_phat_nguoi",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng đối với người điều khiển phương tiện thực hiện vi phạm"
+    },
+    {
+      "source_id": "hanh_vi_vi_pham_phat_nguoi",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_dieu_80",
+      "description": "Quy định quy trình xử phạt nguội qua phương tiện, thiết bị kỹ thuật nghiệp vụ tại Điều 80"
+    }
+  ]
+}

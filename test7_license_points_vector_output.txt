@@ -1,0 +1,46 @@
+{
+  "Van_ban_su_dung": "Luật Trật tự, an toàn giao thông đường bộ",
+  "Tong_so_chunks": 4,
+  "Danh_sach_chunks": [
+    {
+      "Index": 1,
+      "Noi_dung_chunk": "Quy định về trừ điểm Giấy phép lái xe theo Luật Trật tự, an toàn giao thông đường bộ\n1. Giấy phép lái xe có tổng số 12 điểm. Số điểm bị trừ tương ứng với tính chất, mức độ nghiêm trọng của hành vi vi phạm hành chính về trật tự, an toàn giao thông đường bộ.",
+      "Header_boi_canh": "[Bối cảnh: Quy định về tổng số điểm và nguyên tắc trừ điểm Giấy phép lái xe theo Luật Trật tự, an toàn giao thông đường bộ.]",
+      "Noi_dung_day_du": "[Bối cảnh: Quy định về tổng số điểm và nguyên tắc trừ điểm Giấy phép lái xe theo Luật Trật tự, an toàn giao thông đường bộ.]\n\nQuy định về trừ điểm Giấy phép lái xe theo Luật Trật tự, an toàn giao thông đường bộ\n1. Giấy phép lái xe có tổng số 12 điểm. Số điểm bị trừ tương ứng với tính chất, mức độ nghiêm trọng của hành vi vi phạm hành chính về trật tự, an toàn giao thông đường bộ."
+    },
+    {
+      "Index": 2,
+      "Noi_dung_chunk": "2. Hành vi điều khiển xe vượt đèn đỏ, đi ngược chiều trên đường một chiều bị trừ 3 điểm GPLX.",
+      "Header_boi_canh": "[Bối cảnh: Quy định về mức trừ 3 điểm Giấy phép lái xe đối với hành vi điều khiển xe vượt đèn đỏ, đi ngược chiều trên đường một chiều theo Luật Trật tự, an toàn giao thông đường bộ.]",
+      "Noi_dung_day_du": "[Bối cảnh: Quy định về mức trừ 3 điểm Giấy phép lái xe đối với hành vi điều khiển xe vượt đèn đỏ, đi ngược chiều trên đường một chiều theo Luật Trật tự, an toàn giao thông đường bộ.]\n\n2. Hành vi điều khiển xe vượt đèn đỏ, đi ngược chiều trên đường một chiều bị trừ 3 điểm GPLX."
+    },
+    {
+      "Index": 3,
+      "Noi_dung_chunk": "3. Hành vi điều khiển xe chạy quá tốc độ quy định trên 20 km/h đến 35 km/h bị trừ 4 điểm GPLX.",
+      "Header_boi_canh": "[Bối cảnh: Quy định về mức trừ 4 điểm Giấy phép lái xe đối với hành vi điều khiển xe chạy quá tốc độ quy định trên 20 km/h đến 35 km/h theo Luật Trật tự, an toàn giao thông đường bộ.]",
+      "Noi_dung_day_du": "[Bối cảnh: Quy định về mức trừ 4 điểm Giấy phép lái xe đối với hành vi điều khiển xe chạy quá tốc độ quy định trên 20 km/h đến 35 km/h theo Luật Trật tự, an toàn giao thông đường bộ.]\n\n3. Hành vi điều khiển xe chạy quá tốc độ quy định trên 20 km/h đến 35 km/h bị trừ 4 điểm GPLX."
+    },
+    {
+      "Index": 4,
+      "Noi_dung_chunk": "4. Hành vi điều khiển xe trên đường mà trong máu hoặc khí thở có nồng độ cồn vượt quá Mức 3 (vượt 0,4 mg/1 lít khí thở) hoặc đua xe trái phép bị trừ toàn bộ 12 điểm GPLX.",
+      "Header_boi_canh": "[Bối cảnh: Quy định về mức trừ toàn bộ 12 điểm Giấy phép lái xe đối với hành vi vi phạm nồng độ cồn vượt quá Mức 3 hoặc đua xe trái phép theo Luật Trật tự, an toàn giao thông đường bộ.]",
+      "Noi_dung_day_du": "[Bối cảnh: Quy định về mức trừ toàn bộ 12 điểm Giấy phép lái xe đối với hành vi vi phạm nồng độ cồn vượt quá Mức 3 hoặc đua xe trái phép theo Luật Trật tự, an toàn giao thông đường bộ.]\n\n4. Hành vi điều khiển xe trên đường mà trong máu hoặc khí thở có nồng độ cồn vượt quá Mức 3 (vượt 0,4 mg/1 lít khí thở) hoặc đua xe trái phép bị trừ toàn bộ 12 điểm GPLX."
+    }
+  ],
+  "Thoi_gian_xu_ly": 18.98,
+  "Kiem_tra_chat_luong": {
+    "Van_ban_su_dung": "Luật Trật tự, an toàn giao thông đường bộ",
+    "Do_phu_van_ban": 1.0,
+    "Tat_ca_chunk_nguyen_van": true,
+    "Chunk_khong_nguyen_van": [],
+    "Dung_thu_tu": true,
+    "So_khoang_trong": 0,
+    "Khoang_trong": [],
+    "Chunk_ngan_nhat": 93,
+    "Chunk_dai_nhat": 256,
+    "Header_thieu_van_ban": [],
+    "Header_sai_van_ban": [],
+    "Dat_yeu_cau": true
+  },
+  "Embedding": "Chua tao - se bo sung o giai doan sau"
+}

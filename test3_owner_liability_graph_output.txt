@@ -1,0 +1,162 @@
+{
+  "nodes": [
+    {
+      "id": "phuong_tien_o_to",
+      "name": "Xe ô tô",
+      "class_label": "PhuongTien"
+    },
+    {
+      "id": "doi_tuong_chu_xe_ca_nhan",
+      "name": "Chủ phương tiện là cá nhân",
+      "class_label": "DoiTuongViPham"
+    },
+    {
+      "id": "doi_tuong_chu_xe_to_chuc",
+      "name": "Chủ phương tiện là tổ chức",
+      "class_label": "DoiTuongViPham"
+    },
+    {
+      "id": "muc_phat_4m_6m",
+      "name": "Phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "muc_phat_8m_12m",
+      "name": "Phạt tiền từ 8.000.000 đồng đến 12.000.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "muc_phat_16m_24m",
+      "name": "Phạt tiền từ 16.000.000 đồng đến 24.000.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "can_cu_khoan_8_dieu_30_nd_100",
+      "name": "Khoản 8 Điều 30 Nghị định 100/2019/NĐ-CP",
+      "class_label": "CanCuPhapLy"
+    },
+    {
+      "id": "can_cu_khoan_10_dieu_30_nd_100",
+      "name": "Khoản 10 Điều 30 Nghị định 100/2019/NĐ-CP",
+      "class_label": "CanCuPhapLy"
+    },
+    {
+      "id": "hanh_vi_khong_sang_ten_xe_o_to_ca_nhan",
+      "name": "Cá nhân là chủ xe ô tô không làm thủ tục đăng ký sang tên xe theo quy định khi mua, được cho, được tặng, được thừa kế tài sản là xe ô tô",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_khong_sang_ten_xe_o_to_to_chuc",
+      "name": "Tổ chức là chủ xe ô tô không làm thủ tục đăng ký sang tên xe theo quy định khi mua, được cho, được tặng, được thừa kế tài sản là xe ô tô",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_giao_xe_o_to_cho_nguoi_khong_du_dieu_kien_ca_nhan",
+      "name": "Cá nhân là chủ xe ô tô giao xe hoặc để cho người không đủ điều kiện theo quy định điều khiển xe tham gia giao thông",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_giao_xe_o_to_cho_nguoi_khong_du_dieu_kien_to_chuc",
+      "name": "Tổ chức là chủ xe ô tô giao xe hoặc để cho người không đủ điều kiện theo quy định điều khiển xe tham gia giao thông",
+      "class_label": "HanhViViPham"
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "hanh_vi_khong_sang_ten_xe_o_to_ca_nhan",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_o_to",
+      "description": "Hành vi vi phạm áp dụng đối với phương tiện là xe ô tô"
+    },
+    {
+      "source_id": "hanh_vi_khong_sang_ten_xe_o_to_ca_nhan",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_chu_xe_ca_nhan",
+      "description": "Áp dụng đối với chủ phương tiện là cá nhân"
+    },
+    {
+      "source_id": "hanh_vi_khong_sang_ten_xe_o_to_ca_nhan",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_4m_6m",
+      "description": "Bị xử phạt tiền từ 4.000.000 đồng đến 6.000.000 đồng"
+    },
+    {
+      "source_id": "hanh_vi_khong_sang_ten_xe_o_to_ca_nhan",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_khoan_8_dieu_30_nd_100",
+      "description": "Căn cứ theo Khoản 8 Điều 30 Nghị định 100/2019/NĐ-CP"
+    },
+    {
+      "source_id": "hanh_vi_khong_sang_ten_xe_o_to_to_chuc",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_o_to",
+      "description": "Hành vi vi phạm áp dụng đối với phương tiện là xe ô tô"
+    },
+    {
+      "source_id": "hanh_vi_khong_sang_ten_xe_o_to_to_chuc",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_chu_xe_to_chuc",
+      "description": "Áp dụng đối với chủ phương tiện là tổ chức"
+    },
+    {
+      "source_id": "hanh_vi_khong_sang_ten_xe_o_to_to_chuc",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_8m_12m",
+      "description": "Bị xử phạt tiền từ 8.000.000 đồng đến 12.000.000 đồng"
+    },
+    {
+      "source_id": "hanh_vi_khong_sang_ten_xe_o_to_to_chuc",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_khoan_8_dieu_30_nd_100",
+      "description": "Căn cứ theo Khoản 8 Điều 30 Nghị định 100/2019/NĐ-CP"
+    },
+    {
+      "source_id": "hanh_vi_giao_xe_o_to_cho_nguoi_khong_du_dieu_kien_ca_nhan",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_o_to",
+      "description": "Hành vi vi phạm áp dụng đối với phương tiện là xe ô tô"
+    },
+    {
+      "source_id": "hanh_vi_giao_xe_o_to_cho_nguoi_khong_du_dieu_kien_ca_nhan",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_chu_xe_ca_nhan",
+      "description": "Áp dụng đối với chủ phương tiện là cá nhân"
+    },
+    {
+      "source_id": "hanh_vi_giao_xe_o_to_cho_nguoi_khong_du_dieu_kien_ca_nhan",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_8m_12m",
+      "description": "Bị xử phạt tiền từ 8.000.000 đồng đến 12.000.000 đồng"
+    },
+    {
+      "source_id": "hanh_vi_giao_xe_o_to_cho_nguoi_khong_du_dieu_kien_ca_nhan",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_khoan_10_dieu_30_nd_100",
+      "description": "Căn cứ theo Khoản 10 Điều 30 Nghị định 100/2019/NĐ-CP"
+    },
+    {
+      "source_id": "hanh_vi_giao_xe_o_to_cho_nguoi_khong_du_dieu_kien_to_chuc",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_o_to",
+      "description": "Hành vi vi phạm áp dụng đối với phương tiện là xe ô tô"
+    },
+    {
+      "source_id": "hanh_vi_giao_xe_o_to_cho_nguoi_khong_du_dieu_kien_to_chuc",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_chu_xe_to_chuc",
+      "description": "Áp dụng đối với chủ phương tiện là tổ chức"
+    },
+    {
+      "source_id": "hanh_vi_giao_xe_o_to_cho_nguoi_khong_du_dieu_kien_to_chuc",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_16m_24m",
+      "description": "Bị xử phạt tiền từ 16.000.000 đồng đến 24.000.000 đồng"
+    },
+    {
+      "source_id": "hanh_vi_giao_xe_o_to_cho_nguoi_khong_du_dieu_kien_to_chuc",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_khoan_10_dieu_30_nd_100",
+      "description": "Căn cứ theo Khoản 10 Điều 30 Nghị định 100/2019/NĐ-CP"
+    }
+  ]
+}

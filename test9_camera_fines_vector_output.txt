@@ -1,0 +1,34 @@
+{
+  "Van_ban_su_dung": "Nghị định 100/2019/NĐ-CP",
+  "Tong_so_chunks": 2,
+  "Danh_sach_chunks": [
+    {
+      "Index": 1,
+      "Noi_dung_chunk": "Điều 80. Xử phạt vi phạm hành chính qua hệ thống thiết bị kỹ thuật nghiệp vụ (Phạt nguội)\n1. Kết quả thu được từ phương tiện, thiết bị kỹ thuật nghiệp vụ (Camera giám sát giao thông, thiết bị đo tốc độ ghi hình) là căn cứ để người có thẩm quyền lập biên bản và ra quyết định xử phạt vi phạm hành chính.",
+      "Header_boi_canh": "[Bối cảnh: Thuộc Khoản 1 Điều 80 Nghị định 100/2019/NĐ-CP quy định về việc sử dụng kết quả từ thiết bị kỹ thuật nghiệp vụ làm căn cứ lập biên bản và xử phạt vi phạm hành chính (phạt nguội). ]",
+      "Noi_dung_day_du": "[Bối cảnh: Thuộc Khoản 1 Điều 80 Nghị định 100/2019/NĐ-CP quy định về việc sử dụng kết quả từ thiết bị kỹ thuật nghiệp vụ làm căn cứ lập biên bản và xử phạt vi phạm hành chính (phạt nguội). ]\n\nĐiều 80. Xử phạt vi phạm hành chính qua hệ thống thiết bị kỹ thuật nghiệp vụ (Phạt nguội)\n1. Kết quả thu được từ phương tiện, thiết bị kỹ thuật nghiệp vụ (Camera giám sát giao thông, thiết bị đo tốc độ ghi hình) là căn cứ để người có thẩm quyền lập biên bản và ra quyết định xử phạt vi phạm hành chính."
+    },
+    {
+      "Index": 2,
+      "Noi_dung_chunk": "2. Trong thời hạn 10 ngày làm việc kể từ ngày phát hiện hành vi vi phạm qua thiết bị ghi hình, người có thẩm quyền xử phạt gửi thông báo yêu cầu chủ phương tiện, người điều khiển phương tiện đến trụ sở Công an để giải quyết vụ việc xử phạt nguội.",
+      "Header_boi_canh": "[Bối cảnh: Thuộc Khoản 2 Điều 80 Nghị định 100/2019/NĐ-CP quy định về thời hạn gửi thông báo yêu cầu chủ phương tiện, người điều khiển phương tiện đến giải quyết vụ việc xử phạt nguội.]",
+      "Noi_dung_day_du": "[Bối cảnh: Thuộc Khoản 2 Điều 80 Nghị định 100/2019/NĐ-CP quy định về thời hạn gửi thông báo yêu cầu chủ phương tiện, người điều khiển phương tiện đến giải quyết vụ việc xử phạt nguội.]\n\n2. Trong thời hạn 10 ngày làm việc kể từ ngày phát hiện hành vi vi phạm qua thiết bị ghi hình, người có thẩm quyền xử phạt gửi thông báo yêu cầu chủ phương tiện, người điều khiển phương tiện đến trụ sở Công an để giải quyết vụ việc xử phạt nguội."
+    }
+  ],
+  "Thoi_gian_xu_ly": 12.37,
+  "Kiem_tra_chat_luong": {
+    "Van_ban_su_dung": "Nghị định 100/2019/NĐ-CP",
+    "Do_phu_van_ban": 1.0,
+    "Tat_ca_chunk_nguyen_van": true,
+    "Chunk_khong_nguyen_van": [],
+    "Dung_thu_tu": true,
+    "So_khoang_trong": 0,
+    "Khoang_trong": [],
+    "Chunk_ngan_nhat": 246,
+    "Chunk_dai_nhat": 302,
+    "Header_thieu_van_ban": [],
+    "Header_sai_van_ban": [],
+    "Dat_yeu_cau": true
+  },
+  "Embedding": "Chua tao - se bo sung o giai doan sau"
+}

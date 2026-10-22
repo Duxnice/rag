@@ -1,0 +1,144 @@
+{
+  "nodes": [
+    {
+      "id": "nhom_hanh_vi_tai_trong_va_kho_gioi_han",
+      "name": "Vi phạm quy định về tải trọng và khổ giới hạn đường bộ",
+      "class_label": "NhomHanhVi"
+    },
+    {
+      "id": "phuong_tien_xe_o_to_tai",
+      "name": "Xe ô tô tải",
+      "class_label": "PhuongTien"
+    },
+    {
+      "id": "doi_tuong_nguoi_dieu_khien",
+      "name": "Người điều khiển xe",
+      "class_label": "DoiTuongViPham"
+    },
+    {
+      "id": "hanh_vi_cho_hang_vuot_tai_trong_10_den_30",
+      "name": "Điều khiển xe ô tô tải chở hàng vượt trọng tải cho phép của xe từ 10% đến 30%",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "muc_dinh_luong_tai_trong_10_den_30",
+      "name": "Vượt trọng tải cho phép từ 10% đến 30%",
+      "class_label": "MucDinhLuong"
+    },
+    {
+      "id": "muc_phat_3m_den_5m",
+      "name": "Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "can_cu_diem_a_khoan_2_dieu_24",
+      "name": "Điểm a Khoản 2 Điều 24",
+      "class_label": "CanCuPhapLy"
+    },
+    {
+      "id": "hanh_vi_cho_hang_vuot_tai_trong_tren_50_den_100",
+      "name": "Điều khiển xe ô tô tải chở hàng vượt trọng tải cho phép của xe trên 50% đến 100%",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "muc_dinh_luong_tai_trong_tren_50_den_100",
+      "name": "Vượt trọng tải cho phép trên 50% đến 100%",
+      "class_label": "MucDinhLuong"
+    },
+    {
+      "id": "muc_phat_8m_den_10m",
+      "name": "Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "hinh_phat_tuoc_gplx_1_den_3_thang",
+      "name": "Tước quyền sử dụng Giấy phép lái xe từ 01 tháng đến 03 tháng",
+      "class_label": "HinhPhatBoSung"
+    },
+    {
+      "id": "can_cu_diem_a_khoan_5_dieu_24",
+      "name": "Điểm a Khoản 5 Điều 24",
+      "class_label": "CanCuPhapLy"
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "hanh_vi_cho_hang_vuot_tai_trong_10_den_30",
+      "relation_type": "THUOC_NHOM_HANH_VI",
+      "target_id": "nhom_hanh_vi_tai_trong_va_kho_gioi_han",
+      "description": "Thuộc nhóm vi phạm quy định về tải trọng và khổ giới hạn đường bộ"
+    },
+    {
+      "source_id": "hanh_vi_cho_hang_vuot_tai_trong_10_den_30",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_xe_o_to_tai",
+      "description": "Áp dụng đối với xe ô tô tải"
+    },
+    {
+      "source_id": "hanh_vi_cho_hang_vuot_tai_trong_10_den_30",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng đối với người điều khiển phương tiện"
+    },
+    {
+      "source_id": "hanh_vi_cho_hang_vuot_tai_trong_10_den_30",
+      "relation_type": "CO_MUC_DINH_LUONG",
+      "target_id": "muc_dinh_luong_tai_trong_10_den_30",
+      "description": "Ngưỡng vi phạm vượt trọng tải cho phép từ 10% đến 30%"
+    },
+    {
+      "source_id": "hanh_vi_cho_hang_vuot_tai_trong_10_den_30",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_3m_den_5m",
+      "description": "Mức phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng"
+    },
+    {
+      "source_id": "hanh_vi_cho_hang_vuot_tai_trong_10_den_30",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_diem_a_khoan_2_dieu_24",
+      "description": "Được quy định tại Điểm a Khoản 2 Điều 24"
+    },
+    {
+      "source_id": "hanh_vi_cho_hang_vuot_tai_trong_tren_50_den_100",
+      "relation_type": "THUOC_NHOM_HANH_VI",
+      "target_id": "nhom_hanh_vi_tai_trong_va_kho_gioi_han",
+      "description": "Thuộc nhóm vi phạm quy định về tải trọng và khổ giới hạn đường bộ"
+    },
+    {
+      "source_id": "hanh_vi_cho_hang_vuot_tai_trong_tren_50_den_100",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_xe_o_to_tai",
+      "description": "Áp dụng đối với xe ô tô tải"
+    },
+    {
+      "source_id": "hanh_vi_cho_hang_vuot_tai_trong_tren_50_den_100",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng đối với người điều khiển phương tiện"
+    },
+    {
+      "source_id": "hanh_vi_cho_hang_vuot_tai_trong_tren_50_den_100",
+      "relation_type": "CO_MUC_DINH_LUONG",
+      "target_id": "muc_dinh_luong_tai_trong_tren_50_den_100",
+      "description": "Ngưỡng vi phạm vượt trọng tải cho phép trên 50% đến 100%"
+    },
+    {
+      "source_id": "hanh_vi_cho_hang_vuot_tai_trong_tren_50_den_100",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_8m_den_10m",
+      "description": "Mức phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng"
+    },
+    {
+      "source_id": "hanh_vi_cho_hang_vuot_tai_trong_tren_50_den_100",
+      "relation_type": "BI_TIPC_GPLX_BOSUNG",
+      "target_id": "hinh_phat_tuoc_gplx_1_den_3_thang",
+      "description": "Hình phạt bổ sung tước quyền sử dụng GPLX từ 01 tháng đến 03 tháng"
+    },
+    {
+      "source_id": "hanh_vi_cho_hang_vuot_tai_trong_tren_50_den_100",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_diem_a_khoan_5_dieu_24",
+      "description": "Được quy định tại Điểm a Khoản 5 Điều 24"
+    }
+  ]
+}

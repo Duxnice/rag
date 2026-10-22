@@ -1,0 +1,179 @@
+{
+  "nodes": [
+    {
+      "id": "can_cu_luat_ttatgtdb",
+      "name": "Luật Trật tự, an toàn giao thông đường bộ",
+      "class_label": "CanCuPhapLy"
+    },
+    {
+      "id": "doi_tuong_nguoi_dieu_khien",
+      "name": "Người điều khiển phương tiện",
+      "class_label": "DoiTuongViPham"
+    },
+    {
+      "id": "hanh_vi_vuot_den_do",
+      "name": "Điều khiển xe vượt đèn đỏ",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_di_nguoc_chieu_tren_duong_mot_chieu",
+      "name": "Điều khiển xe đi ngược chiều trên đường một chiều",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_chay_qua_toc_do_20_den_35",
+      "name": "Điều khiển xe chạy quá tốc độ quy định trên 20 km/h đến 35 km/h",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_vi_pham_nong_do_con_muc_3",
+      "name": "Điều khiển xe trên đường mà trong máu hoặc khí thở có nồng độ cồn vượt quá Mức 3",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "hanh_vi_dua_xe_trai_phep",
+      "name": "Đua xe trái phép",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "tuyen_duong_mot_chieu",
+      "name": "Đường một chiều",
+      "class_label": "LoaiTuyenDuong"
+    },
+    {
+      "id": "dinh_luong_toc_do_20_den_35",
+      "name": "Chạy quá tốc độ quy định trên 20 km/h đến 35 km/h",
+      "class_label": "MucDinhLuong"
+    },
+    {
+      "id": "dinh_luong_con_vuot_muc_3",
+      "name": "Nồng độ cồn vượt quá 0,4 mg/1 lít khí thở (Mức 3)",
+      "class_label": "MucDinhLuong"
+    },
+    {
+      "id": "tru_diem_3_diem",
+      "name": "Bị trừ 3 điểm Giấy phép lái xe",
+      "class_label": "TruDiemGPLX"
+    },
+    {
+      "id": "tru_diem_4_diem",
+      "name": "Bị trừ 4 điểm Giấy phép lái xe",
+      "class_label": "TruDiemGPLX"
+    },
+    {
+      "id": "tru_diem_12_diem",
+      "name": "Bị trừ toàn bộ 12 điểm Giấy phép lái xe",
+      "class_label": "TruDiemGPLX"
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "hanh_vi_vuot_den_do",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng cho người điều khiển xe"
+    },
+    {
+      "source_id": "hanh_vi_vuot_den_do",
+      "relation_type": "BI_TRU_DIEM",
+      "target_id": "tru_diem_3_diem",
+      "description": "Vượt đèn đỏ bị trừ 3 điểm GPLX"
+    },
+    {
+      "source_id": "hanh_vi_vuot_den_do",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_luat_ttatgtdb",
+      "description": "Quy định tại Luật Trật tự, an toàn giao thông đường bộ"
+    },
+    {
+      "source_id": "hanh_vi_di_nguoc_chieu_tren_duong_mot_chieu",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng cho người điều khiển xe"
+    },
+    {
+      "source_id": "hanh_vi_di_nguoc_chieu_tren_duong_mot_chieu",
+      "relation_type": "XAY_RA_TAI_DIA_DIEM",
+      "target_id": "tuyen_duong_mot_chieu",
+      "description": "Hành vi xảy ra trên đường một chiều"
+    },
+    {
+      "source_id": "hanh_vi_di_nguoc_chieu_tren_duong_mot_chieu",
+      "relation_type": "BI_TRU_DIEM",
+      "target_id": "tru_diem_3_diem",
+      "description": "Đi ngược chiều trên đường một chiều bị trừ 3 điểm GPLX"
+    },
+    {
+      "source_id": "hanh_vi_di_nguoc_chieu_tren_duong_mot_chieu",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_luat_ttatgtdb",
+      "description": "Quy định tại Luật Trật tự, an toàn giao thông đường bộ"
+    },
+    {
+      "source_id": "hanh_vi_chay_qua_toc_do_20_den_35",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng cho người điều khiển xe"
+    },
+    {
+      "source_id": "hanh_vi_chay_qua_toc_do_20_den_35",
+      "relation_type": "CO_MUC_DINH_LUONG",
+      "target_id": "dinh_luong_toc_do_20_den_35",
+      "description": "Mức vi phạm chạy quá tốc độ từ trên 20 km/h đến 35 km/h"
+    },
+    {
+      "source_id": "hanh_vi_chay_qua_toc_do_20_den_35",
+      "relation_type": "BI_TRU_DIEM",
+      "target_id": "tru_diem_4_diem",
+      "description": "Chạy quá tốc độ trên 20 km/h đến 35 km/h bị trừ 4 điểm GPLX"
+    },
+    {
+      "source_id": "hanh_vi_chay_qua_toc_do_20_den_35",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_luat_ttatgtdb",
+      "description": "Quy định tại Luật Trật tự, an toàn giao thông đường bộ"
+    },
+    {
+      "source_id": "hanh_vi_vi_pham_nong_do_con_muc_3",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng cho người điều khiển xe"
+    },
+    {
+      "source_id": "hanh_vi_vi_pham_nong_do_con_muc_3",
+      "relation_type": "CO_MUC_DINH_LUONG",
+      "target_id": "dinh_luong_con_vuot_muc_3",
+      "description": "Định lượng nồng độ cồn vượt quá 0,4 mg/1 lít khí thở"
+    },
+    {
+      "source_id": "hanh_vi_vi_pham_nong_do_con_muc_3",
+      "relation_type": "BI_TRU_DIEM",
+      "target_id": "tru_diem_12_diem",
+      "description": "Vi phạm nồng độ cồn mức 3 bị trừ 12 điểm GPLX"
+    },
+    {
+      "source_id": "hanh_vi_vi_pham_nong_do_con_muc_3",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_luat_ttatgtdb",
+      "description": "Quy định tại Luật Trật tự, an toàn giao thông đường bộ"
+    },
+    {
+      "source_id": "hanh_vi_dua_xe_trai_phep",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng cho người đua xe trái phép"
+    },
+    {
+      "source_id": "hanh_vi_dua_xe_trai_phep",
+      "relation_type": "BI_TRU_DIEM",
+      "target_id": "tru_diem_12_diem",
+      "description": "Đua xe trái phép bị trừ toàn bộ 12 điểm GPLX"
+    },
+    {
+      "source_id": "hanh_vi_dua_xe_trai_phep",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_luat_ttatgtdb",
+      "description": "Quy định tại Luật Trật tự, an toàn giao thông đường bộ"
+    }
+  ]
+}

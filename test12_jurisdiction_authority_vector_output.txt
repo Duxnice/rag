@@ -1,0 +1,46 @@
+{
+  "Van_ban_su_dung": "Nghị định 100/2019/NĐ-CP",
+  "Tong_so_chunks": 4,
+  "Danh_sach_chunks": [
+    {
+      "Index": 1,
+      "Noi_dung_chunk": "Điều 74. Thẩm quyền xử phạt vi phạm hành chính trong lĩnh vực giao thông đường bộ\n1. Chiến sĩ Cảnh sát giao thông đang thi hành công vụ có quyền phạt cảnh cáo, phạt tiền đến 500.000 đồng đối với cá nhân, 1.000.000 đồng đối với tổ chức.",
+      "Header_boi_canh": "[Bối cảnh: Thuộc Khoản 1 Điều 74 Nghị định 100/2019/NĐ-CP quy định về thẩm quyền xử phạt vi phạm hành chính trong lĩnh vực giao thông đường bộ của Chiến sĩ Cảnh sát giao thông đang thi hành công vụ.]",
+      "Noi_dung_day_du": "[Bối cảnh: Thuộc Khoản 1 Điều 74 Nghị định 100/2019/NĐ-CP quy định về thẩm quyền xử phạt vi phạm hành chính trong lĩnh vực giao thông đường bộ của Chiến sĩ Cảnh sát giao thông đang thi hành công vụ.]\n\nĐiều 74. Thẩm quyền xử phạt vi phạm hành chính trong lĩnh vực giao thông đường bộ\n1. Chiến sĩ Cảnh sát giao thông đang thi hành công vụ có quyền phạt cảnh cáo, phạt tiền đến 500.000 đồng đối với cá nhân, 1.000.000 đồng đối với tổ chức."
+    },
+    {
+      "Index": 2,
+      "Noi_dung_chunk": "2. Trưởng Công an cấp xã, Đội trưởng Đội Cảnh sát giao thông có quyền phạt tiền đến 2.500.000 đồng đối với cá nhân, 5.000.000 đồng đối với tổ chức.",
+      "Header_boi_canh": "[Bối cảnh: Thuộc Khoản 2 Điều 74 Nghị định 100/2019/NĐ-CP quy định về thẩm quyền xử phạt vi phạm hành chính trong lĩnh vực giao thông đường bộ của Trưởng Công an cấp xã, Đội trưởng Đội Cảnh sát giao thông.]",
+      "Noi_dung_day_du": "[Bối cảnh: Thuộc Khoản 2 Điều 74 Nghị định 100/2019/NĐ-CP quy định về thẩm quyền xử phạt vi phạm hành chính trong lĩnh vực giao thông đường bộ của Trưởng Công an cấp xã, Đội trưởng Đội Cảnh sát giao thông.]\n\n2. Trưởng Công an cấp xã, Đội trưởng Đội Cảnh sát giao thông có quyền phạt tiền đến 2.500.000 đồng đối với cá nhân, 5.000.000 đồng đối với tổ chức."
+    },
+    {
+      "Index": 3,
+      "Noi_dung_chunk": "3. Trưởng Công an cấp huyện, Trưởng phòng Cảnh sát giao thông có quyền phạt tiền đến 15.000.000 đồng, tước quyền sử dụng giấy phép lái xe có thời hạn hoặc tạm giữ phương tiện vi phạm.",
+      "Header_boi_canh": "[Bối cảnh: Thuộc Khoản 3 Điều 74 Nghị định 100/2019/NĐ-CP quy định về thẩm quyền xử phạt vi phạm hành chính trong lĩnh vực giao thông đường bộ của Trưởng Công an cấp huyện, Trưởng phòng Cảnh sát giao thông.]",
+      "Noi_dung_day_du": "[Bối cảnh: Thuộc Khoản 3 Điều 74 Nghị định 100/2019/NĐ-CP quy định về thẩm quyền xử phạt vi phạm hành chính trong lĩnh vực giao thông đường bộ của Trưởng Công an cấp huyện, Trưởng phòng Cảnh sát giao thông.]\n\n3. Trưởng Công an cấp huyện, Trưởng phòng Cảnh sát giao thông có quyền phạt tiền đến 15.000.000 đồng, tước quyền sử dụng giấy phép lái xe có thời hạn hoặc tạm giữ phương tiện vi phạm."
+    },
+    {
+      "Index": 4,
+      "Noi_dung_chunk": "4. Chủ tịch Ủy ban nhân dân cấp tỉnh có quyền phạt tiền đến mức tối đa quy định trong lĩnh vực giao thông đường bộ (75.000.000 đồng đối với cá nhân, 150.000.000 đồng đối với tổ chức).",
+      "Header_boi_canh": "[Bối cảnh: Thuộc Khoản 4 Điều 74 Nghị định 100/2019/NĐ-CP quy định về thẩm quyền xử phạt vi phạm hành chính trong lĩnh vực giao thông đường bộ của Chủ tịch Ủy ban nhân dân cấp tỉnh.]",
+      "Noi_dung_day_du": "[Bối cảnh: Thuộc Khoản 4 Điều 74 Nghị định 100/2019/NĐ-CP quy định về thẩm quyền xử phạt vi phạm hành chính trong lĩnh vực giao thông đường bộ của Chủ tịch Ủy ban nhân dân cấp tỉnh.]\n\n4. Chủ tịch Ủy ban nhân dân cấp tỉnh có quyền phạt tiền đến mức tối đa quy định trong lĩnh vực giao thông đường bộ (75.000.000 đồng đối với cá nhân, 150.000.000 đồng đối với tổ chức)."
+    }
+  ],
+  "Thoi_gian_xu_ly": 14.37,
+  "Kiem_tra_chat_luong": {
+    "Van_ban_su_dung": "Nghị định 100/2019/NĐ-CP",
+    "Do_phu_van_ban": 1.0,
+    "Tat_ca_chunk_nguyen_van": true,
+    "Chunk_khong_nguyen_van": [],
+    "Dung_thu_tu": true,
+    "So_khoang_trong": 0,
+    "Khoang_trong": [],
+    "Chunk_ngan_nhat": 147,
+    "Chunk_dai_nhat": 235,
+    "Header_thieu_van_ban": [],
+    "Header_sai_van_ban": [],
+    "Dat_yeu_cau": true
+  },
+  "Embedding": "Chua tao - se bo sung o giai doan sau"
+}

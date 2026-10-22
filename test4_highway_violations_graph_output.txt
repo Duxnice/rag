@@ -1,0 +1,161 @@
+{
+  "nodes": [
+    {
+      "id": "phuong_tien_o_to",
+      "name": "Xe ô tô",
+      "class_label": "PhuongTien"
+    },
+    {
+      "id": "doi_tuong_nguoi_dieu_khien",
+      "name": "Người điều khiển xe ô tô",
+      "class_label": "DoiTuongViPham"
+    },
+    {
+      "id": "nhom_vi_pham_quy_tac_giao_thong",
+      "name": "Vi phạm quy tắc giao thông",
+      "class_label": "NhomHanhVi"
+    },
+    {
+      "id": "loai_tuyen_duong_cao_toc",
+      "name": "Đường cao tốc",
+      "class_label": "LoaiTuyenDuong"
+    },
+    {
+      "id": "hanh_vi_dung_do_xe_tren_cao_toc_khong_dung_quy_dinh",
+      "name": "Dừng xe, đỗ xe trên đường cao tốc không đúng nơi quy định; không có tín hiệu cảnh báo khi buộc phải dừng xe, đỗ xe trên đường cao tốc không đúng nơi quy định",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "muc_phat_6tr_8tr",
+      "name": "Phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "tuoc_gplx_1_den_3_thang",
+      "name": "Tước quyền sử dụng Giấy phép lái xe từ 01 tháng đến 03 tháng",
+      "class_label": "HinhPhatBoSung"
+    },
+    {
+      "id": "can_cu_diem_g_khoan_6_dieu_5",
+      "name": "Điểm g Khoản 6 Điều 5",
+      "class_label": "CanCuPhapLy"
+    },
+    {
+      "id": "hanh_vi_lui_quay_dau_di_nguoc_chieu_tren_cao_toc",
+      "name": "Lùi xe trên đường cao tốc, quay đầu xe trên đường cao tốc, đi ngược chiều trên đường cao tốc",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "muc_phat_10tr_12tr",
+      "name": "Phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "tuoc_gplx_5_den_7_thang",
+      "name": "Tước quyền sử dụng Giấy phép lái xe từ 05 tháng đến 07 tháng",
+      "class_label": "HinhPhatBoSung"
+    },
+    {
+      "id": "tam_giu_phuong_tien_den_7_ngay",
+      "name": "Tạm giữ phương tiện đến 07 ngày",
+      "class_label": "BienPhapNganChan"
+    },
+    {
+      "id": "can_cu_diem_a_khoan_8_dieu_5",
+      "name": "Điểm a Khoản 8 Điều 5",
+      "class_label": "CanCuPhapLy"
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "hanh_vi_dung_do_xe_tren_cao_toc_khong_dung_quy_dinh",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_o_to",
+      "description": "Áp dụng đối với phương tiện là xe ô tô"
+    },
+    {
+      "source_id": "hanh_vi_dung_do_xe_tren_cao_toc_khong_dung_quy_dinh",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng đối với người điều khiển phương tiện"
+    },
+    {
+      "source_id": "hanh_vi_dung_do_xe_tren_cao_toc_khong_dung_quy_dinh",
+      "relation_type": "THUOC_NHOM_HANH_VI",
+      "target_id": "nhom_vi_pham_quy_tac_giao_thong",
+      "description": "Thuộc nhóm vi phạm quy tắc giao thông"
+    },
+    {
+      "source_id": "hanh_vi_dung_do_xe_tren_cao_toc_khong_dung_quy_dinh",
+      "relation_type": "XAY_RA_TAI_DIA_DIEM",
+      "target_id": "loai_tuyen_duong_cao_toc",
+      "description": "Địa điểm xảy ra trên đường cao tốc"
+    },
+    {
+      "source_id": "hanh_vi_dung_do_xe_tren_cao_toc_khong_dung_quy_dinh",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_6tr_8tr",
+      "description": "Bị xử phạt tiền từ 6.000.000 đồng đến 8.000.000 đồng"
+    },
+    {
+      "source_id": "hanh_vi_dung_do_xe_tren_cao_toc_khong_dung_quy_dinh",
+      "relation_type": "BI_TIPC_GPLX_BOSUNG",
+      "target_id": "tuoc_gplx_1_den_3_thang",
+      "description": "Hình phạt bổ sung tước GPLX từ 01 đến 03 tháng"
+    },
+    {
+      "source_id": "hanh_vi_dung_do_xe_tren_cao_toc_khong_dung_quy_dinh",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_diem_g_khoan_6_dieu_5",
+      "description": "Quy định tại Điểm g Khoản 6 Điều 5"
+    },
+    {
+      "source_id": "hanh_vi_lui_quay_dau_di_nguoc_chieu_tren_cao_toc",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_o_to",
+      "description": "Áp dụng đối với phương tiện là xe ô tô"
+    },
+    {
+      "source_id": "hanh_vi_lui_quay_dau_di_nguoc_chieu_tren_cao_toc",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien",
+      "description": "Áp dụng đối với người điều khiển phương tiện"
+    },
+    {
+      "source_id": "hanh_vi_lui_quay_dau_di_nguoc_chieu_tren_cao_toc",
+      "relation_type": "THUOC_NHOM_HANH_VI",
+      "target_id": "nhom_vi_pham_quy_tac_giao_thong",
+      "description": "Thuộc nhóm vi phạm quy tắc giao thông"
+    },
+    {
+      "source_id": "hanh_vi_lui_quay_dau_di_nguoc_chieu_tren_cao_toc",
+      "relation_type": "XAY_RA_TAI_DIA_DIEM",
+      "target_id": "loai_tuyen_duong_cao_toc",
+      "description": "Địa điểm xảy ra trên đường cao tốc"
+    },
+    {
+      "source_id": "hanh_vi_lui_quay_dau_di_nguoc_chieu_tren_cao_toc",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_10tr_12tr",
+      "description": "Bị xử phạt tiền từ 10.000.000 đồng đến 12.000.000 đồng"
+    },
+    {
+      "source_id": "hanh_vi_lui_quay_dau_di_nguoc_chieu_tren_cao_toc",
+      "relation_type": "BI_TIPC_GPLX_BOSUNG",
+      "target_id": "tuoc_gplx_5_den_7_thang",
+      "description": "Hình phạt bổ sung tước GPLX từ 05 đến 07 tháng"
+    },
+    {
+      "source_id": "hanh_vi_lui_quay_dau_di_nguoc_chieu_tren_cao_toc",
+      "relation_type": "AP_DUNG_BIEN_PHAP_NGAN_CHAN",
+      "target_id": "tam_giu_phuong_tien_den_7_ngay",
+      "description": "Áp dụng biện pháp ngăn chặn tạm giữ phương tiện đến 07 ngày"
+    },
+    {
+      "source_id": "hanh_vi_lui_quay_dau_di_nguoc_chieu_tren_cao_toc",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_diem_a_khoan_8_dieu_5",
+      "description": "Quy định tại Điểm a Khoản 8 Điều 5"
+    }
+  ]
+}

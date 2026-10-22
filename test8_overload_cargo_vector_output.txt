@@ -1,0 +1,40 @@
+{
+  "Van_ban_su_dung": "Nghị định 100/2019/NĐ-CP",
+  "Tong_so_chunks": 3,
+  "Danh_sach_chunks": [
+    {
+      "Index": 1,
+      "Noi_dung_chunk": "Điều 24 & Điều 33. Xử phạt vi phạm quy định về tải trọng và khổ giới hạn đường bộ\n3. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với người điều khiển xe ô tô tải chở hàng vượt trọng tải cho phép của xe từ 10% đến 30% (Điểm a Khoản 2 Điều 24).",
+      "Header_boi_canh": "[Bối cảnh: Quy định xử phạt vi phạm hành chính theo Điều 24 Nghị định 100/2019/NĐ-CP đối với người điều khiển xe ô tô tải chở hàng vượt trọng tải cho phép từ 10% đến 30%.]",
+      "Noi_dung_day_du": "[Bối cảnh: Quy định xử phạt vi phạm hành chính theo Điều 24 Nghị định 100/2019/NĐ-CP đối với người điều khiển xe ô tô tải chở hàng vượt trọng tải cho phép từ 10% đến 30%.]\n\nĐiều 24 & Điều 33. Xử phạt vi phạm quy định về tải trọng và khổ giới hạn đường bộ\n3. Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng đối với người điều khiển xe ô tô tải chở hàng vượt trọng tải cho phép của xe từ 10% đến 30% (Điểm a Khoản 2 Điều 24)."
+    },
+    {
+      "Index": 2,
+      "Noi_dung_chunk": "5. Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng đối với người điều khiển xe ô tô tải chở hàng vượt trọng tải cho phép của xe trên 50% đến 100% (Điểm a Khoản 5 Điều 24). Tước GPLX từ 01 tháng đến 03 tháng.",
+      "Header_boi_canh": "[Bối cảnh: Quy định mức phạt tiền và hình thức phạt bổ sung theo Điểm a Khoản 5 Điều 24 Nghị định 100/2019/NĐ-CP đối với người điều khiển xe ô tô tải chở hàng vượt trọng tải từ trên 50% đến 100%.]",
+      "Noi_dung_day_du": "[Bối cảnh: Quy định mức phạt tiền và hình thức phạt bổ sung theo Điểm a Khoản 5 Điều 24 Nghị định 100/2019/NĐ-CP đối với người điều khiển xe ô tô tải chở hàng vượt trọng tải từ trên 50% đến 100%.]\n\n5. Phạt tiền từ 8.000.000 đồng đến 10.000.000 đồng đối với người điều khiển xe ô tô tải chở hàng vượt trọng tải cho phép của xe trên 50% đến 100% (Điểm a Khoản 5 Điều 24). Tước GPLX từ 01 tháng đến 03 tháng."
+    },
+    {
+      "Index": 3,
+      "Noi_dung_chunk": "6. Buộc hạ phần hàng vượt quá tải trọng hoặc buộc tháo dỡ phần hàng quá khổ giới hạn theo quy định của pháp luật.",
+      "Header_boi_canh": "[Bối cảnh: Quy định biện pháp khắc phục hậu quả đối với hành vi vi phạm về tải trọng và khổ giới hạn đường bộ theo Nghị định 100/2019/NĐ-CP.]",
+      "Noi_dung_day_du": "[Bối cảnh: Quy định biện pháp khắc phục hậu quả đối với hành vi vi phạm về tải trọng và khổ giới hạn đường bộ theo Nghị định 100/2019/NĐ-CP.]\n\n6. Buộc hạ phần hàng vượt quá tải trọng hoặc buộc tháo dỡ phần hàng quá khổ giới hạn theo quy định của pháp luật."
+    }
+  ],
+  "Thoi_gian_xu_ly": 18.27,
+  "Kiem_tra_chat_luong": {
+    "Van_ban_su_dung": "Nghị định 100/2019/NĐ-CP",
+    "Do_phu_van_ban": 1.0,
+    "Tat_ca_chunk_nguyen_van": true,
+    "Chunk_khong_nguyen_van": [],
+    "Dung_thu_tu": true,
+    "So_khoang_trong": 0,
+    "Khoang_trong": [],
+    "Chunk_ngan_nhat": 113,
+    "Chunk_dai_nhat": 249,
+    "Header_thieu_van_ban": [],
+    "Header_sai_van_ban": [],
+    "Dat_yeu_cau": true
+  },
+  "Embedding": "Chua tao - se bo sung o giai doan sau"
+}

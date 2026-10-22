@@ -1,0 +1,183 @@
+{
+  "nodes": [
+    {
+      "id": "doi_tuong_nguoi_dieu_khien_xe_khach_xe_buyt",
+      "name": "Người điều khiển xe ô tô chở hành khách, xe buýt",
+      "class_label": "DoiTuongViPham"
+    },
+    {
+      "id": "phuong_tien_o_to_cho_hanh_khach",
+      "name": "Xe ô tô chở hành khách",
+      "class_label": "PhuongTien"
+    },
+    {
+      "id": "phuong_tien_xe_buyt",
+      "name": "Xe buýt",
+      "class_label": "PhuongTien"
+    },
+    {
+      "id": "nhom_vi_pham_van_tai_duong_bo",
+      "name": "Vi phạm quy định về vận tải đường bộ",
+      "class_label": "NhomHanhVi"
+    },
+    {
+      "id": "hanh_vi_cho_qua_so_nguoi_tuyen_duoi_300km",
+      "name": "Chở quá số lượng quy định đối với xe khách chạy tuyến cự ly ngắn dưới 300 km",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "muc_dinh_luong_cu_ly_duoi_300km",
+      "name": "Chạy tuyến cự ly ngắn dưới 300 km",
+      "class_label": "MucDinhLuong"
+    },
+    {
+      "id": "muc_phat_400k_600k_moi_nguoi",
+      "name": "Phạt tiền từ 400.000 đồng đến 600.000 đồng trên mỗi hành khách chở quá",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "can_cu_khoan_2_dieu_23",
+      "name": "Khoản 2 Điều 23",
+      "class_label": "CanCuPhapLy"
+    },
+    {
+      "id": "hanh_vi_don_tra_khach_khong_dung_noi_quy_dinh",
+      "name": "Đón, trả hành khách không đúng nơi quy định trên các tuyến đường đã xác định điểm đón trả khách",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "muc_phat_1m_2m",
+      "name": "Phạt tiền từ 1.000.000 đồng đến 2.000.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "hinh_phat_tuoc_gplx_1_3_thang",
+      "name": "Tước quyền sử dụng Giấy phép lái xe từ 01 tháng đến 03 tháng",
+      "class_label": "HinhPhatBoSung"
+    },
+    {
+      "id": "can_cu_diem_e_khoan_4_dieu_23",
+      "name": "Điểm e Khoản 4 Điều 23",
+      "class_label": "CanCuPhapLy"
+    },
+    {
+      "id": "hanh_vi_khong_dong_cua_len_xuong_khi_xe_chay",
+      "name": "Điều khiển xe ô tô chở hành khách không đóng cửa lên xuống khi xe đang chạy",
+      "class_label": "HanhViViPham"
+    },
+    {
+      "id": "muc_phat_3m_5m",
+      "name": "Phạt tiền từ 3.000.000 đồng đến 5.000.000 đồng",
+      "class_label": "MucPhatTien"
+    },
+    {
+      "id": "can_cu_khoan_5_dieu_23",
+      "name": "Khoản 5 Điều 23",
+      "class_label": "CanCuPhapLy"
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "hanh_vi_cho_qua_so_nguoi_tuyen_duoi_300km",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien_xe_khach_xe_buyt",
+      "description": "Áp dụng đối với người điều khiển phương tiện"
+    },
+    {
+      "source_id": "hanh_vi_cho_qua_so_nguoi_tuyen_duoi_300km",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_o_to_cho_hanh_khach",
+      "description": "Áp dụng đối với xe ô tô chở hành khách"
+    },
+    {
+      "source_id": "hanh_vi_cho_qua_so_nguoi_tuyen_duoi_300km",
+      "relation_type": "THUOC_NHOM_HANH_VI",
+      "target_id": "nhom_vi_pham_van_tai_duong_bo",
+      "description": "Thuộc nhóm vi phạm quy định về vận tải đường bộ"
+    },
+    {
+      "source_id": "hanh_vi_cho_qua_so_nguoi_tuyen_duoi_300km",
+      "relation_type": "CO_MUC_DINH_LUONG",
+      "target_id": "muc_dinh_luong_cu_ly_duoi_300km",
+      "description": "Ngưỡng định lượng cự ly tuyến dưới 300 km"
+    },
+    {
+      "source_id": "hanh_vi_cho_qua_so_nguoi_tuyen_duoi_300km",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_400k_600k_moi_nguoi",
+      "description": "Mức tiền phạt áp dụng"
+    },
+    {
+      "source_id": "hanh_vi_cho_qua_so_nguoi_tuyen_duoi_300km",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_khoan_2_dieu_23",
+      "description": "Căn cứ pháp lý quy định"
+    },
+    {
+      "source_id": "hanh_vi_don_tra_khach_khong_dung_noi_quy_dinh",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien_xe_khach_xe_buyt",
+      "description": "Áp dụng đối với người điều khiển phương tiện"
+    },
+    {
+      "source_id": "hanh_vi_don_tra_khach_khong_dung_noi_quy_dinh",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_o_to_cho_hanh_khach",
+      "description": "Áp dụng đối với xe ô tô chở hành khách"
+    },
+    {
+      "source_id": "hanh_vi_don_tra_khach_khong_dung_noi_quy_dinh",
+      "relation_type": "THUOC_NHOM_HANH_VI",
+      "target_id": "nhom_vi_pham_van_tai_duong_bo",
+      "description": "Thuộc nhóm vi phạm quy định về vận tải đường bộ"
+    },
+    {
+      "source_id": "hanh_vi_don_tra_khach_khong_dung_noi_quy_dinh",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_1m_2m",
+      "description": "Mức tiền phạt áp dụng"
+    },
+    {
+      "source_id": "hanh_vi_don_tra_khach_khong_dung_noi_quy_dinh",
+      "relation_type": "BI_TIPC_GPLX_BOSUNG",
+      "target_id": "hinh_phat_tuoc_gplx_1_3_thang",
+      "description": "Hình thức xử phạt bổ sung"
+    },
+    {
+      "source_id": "hanh_vi_don_tra_khach_khong_dung_noi_quy_dinh",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_diem_e_khoan_4_dieu_23",
+      "description": "Căn cứ pháp lý quy định"
+    },
+    {
+      "source_id": "hanh_vi_khong_dong_cua_len_xuong_khi_xe_chay",
+      "relation_type": "AP_DUNG_CHO_DOI_TUONG",
+      "target_id": "doi_tuong_nguoi_dieu_khien_xe_khach_xe_buyt",
+      "description": "Áp dụng đối với người điều khiển phương tiện"
+    },
+    {
+      "source_id": "hanh_vi_khong_dong_cua_len_xuong_khi_xe_chay",
+      "relation_type": "AP_DUNG_CHO_PHUONG_TIEN",
+      "target_id": "phuong_tien_o_to_cho_hanh_khach",
+      "description": "Áp dụng đối với xe ô tô chở hành khách"
+    },
+    {
+      "source_id": "hanh_vi_khong_dong_cua_len_xuong_khi_xe_chay",
+      "relation_type": "THUOC_NHOM_HANH_VI",
+      "target_id": "nhom_vi_pham_van_tai_duong_bo",
+      "description": "Thuộc nhóm vi phạm quy định về vận tải đường bộ"
+    },
+    {
+      "source_id": "hanh_vi_khong_dong_cua_len_xuong_khi_xe_chay",
+      "relation_type": "BI_XU_PHAT_TIEN",
+      "target_id": "muc_phat_3m_5m",
+      "description": "Mức tiền phạt áp dụng"
+    },
+    {
+      "source_id": "hanh_vi_khong_dong_cua_len_xuong_khi_xe_chay",
+      "relation_type": "QUY_DINH_TAI",
+      "target_id": "can_cu_khoan_5_dieu_23",
+      "description": "Căn cứ pháp lý quy định"
+    }
+  ]
+}
